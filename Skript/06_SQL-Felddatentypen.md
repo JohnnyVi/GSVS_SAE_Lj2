@@ -46,7 +46,6 @@ Beispiele aus dem Warenautomaten-Kontext:
 - Primärschlüssel je nach Strategie als `BIGINT` oder `UUID`.
 
 ### Querverweise
-- [6.2 Passende Typwahl](#62-passende-typwahl)
 - [Kapitel 7: CREATE TABLE](07_CREATE_TABLE.md)
 - [Kapitel 8: INSERT INTO](08_INSERT_INTO.md)
 

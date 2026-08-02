@@ -4,6 +4,8 @@
 
 Sobald die Tabellen definiert sind, können sie mit echten Daten gefüllt werden. `INSERT INTO` beginnt also dort, wo das Schema fertig ist.
 
+`INSERT INTO` gehört zur `DML` (Data Manipulation Language), weil damit Dateninhalte in Tabellen eingefügt und verändert werden.
+
 ### 8.1 Einfügen einzelner Datensätze
 Mit `INSERT INTO` fügt man neue Zeilen (Tupel) in eine Tabelle ein. Die sicherste Form ist das Einfügen mit expliziter Spaltenliste, weil dann die Reihenfolge klar ist und spätere Tabellenänderungen weniger Fehler verursachen.
 
@@ -17,6 +19,13 @@ Warum mit Spaltenliste?
 - Die Zuordnung ist eindeutig.
 - Nicht benötigte Spalten können durch `DEFAULT` oder `NULL` belegt werden.
 - Fehler bei geänderter Spaltenreihenfolge werden vermieden.
+
+Alternativ kann auch die Kurzform genutzt werden:
+```sql
+INSERT INTO tabelle 
+VALUES (wert1, wert2, wert3);
+```
+Hier müssen dann alle Spalten  in der richtigen Reihenfolge angegeben werden, auch wenn sie nicht befüllt werden soll (NULL eintragen!)
 
 ### 8.2 Mehrere Datensätze auf einmal
 Mehrere Zeilen können mit einem einzigen `INSERT` eingefügt werden. Das ist übersichtlicher und oft schneller als viele einzelne Statements.
@@ -74,7 +83,6 @@ Merksatz:
 "Eltern zuerst, Kinder danach, Beziehungen zuletzt." 
 
 ### Querverweise
-- [8.3 Häufige Fehlerquellen bei INSERT](#83-häufige-fehlerquellen-bei-insert)
 - [Kapitel 7: CREATE TABLE](07_CREATE_TABLE.md)
 - [Kapitel 15: UPDATE, ALTER und DELETE](15_UPDATE_ALTER_und_DELETE.md)
 

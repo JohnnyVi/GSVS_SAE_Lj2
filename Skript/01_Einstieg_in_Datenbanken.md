@@ -5,6 +5,10 @@
 ### 1.1 Was ist eine Datenbank?
 Eine Datenbank speichert Daten strukturiert und dauerhaft. Im Unterschied zu einer einfachen Datei kann man Daten gezielt abfragen, ändern und mit Regeln absichern.
 
+Ein DBMS (Datenbankmanagementsystem) ist die Software, die eine Datenbank verwaltet. Es sorgt dafür, dass Daten gespeichert, gelesen, geändert und geschützt werden können. Typische Aufgaben eines DBMS sind zum Beispiel die Benutzerverwaltung, die Ausführung von SQL-Befehlen, die Zugriffskontrolle und die Sicherung der Datenintegrität.
+
+In der Praxis arbeitet ein DBMS oft in einer Client-Server-Architektur. Dabei läuft das DBMS auf einem Server, der die Daten zentral verwaltet. Ein Client, zum Beispiel ein Datenbankprogramm, eine Anwendung oder ein Webserver, sendet Anfragen an den Datenbankserver. Der Server verarbeitet diese Anfragen und liefert die passenden Ergebnisse zurück. Dadurch können mehrere Benutzer gleichzeitig auf dieselbe Datenbank zugreifen.
+
 Die Warenautomat-Datenbank zeigt diese Grundbegriffe an einem realen Beispiel. Damit die Fachsprache klar ist, hilft folgende Zuordnung:
 
 | Fachwort | Bedeutung | Beispiel (Warenautomat) |

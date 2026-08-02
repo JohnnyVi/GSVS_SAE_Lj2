@@ -4,6 +4,8 @@
 
 Wenn die Tabellen befüllt sind, folgt das Lesen und Auswerten der Daten. Deshalb steht `SELECT` nach dem Einfügen und vor den späteren Analyse- und Änderungsoperationen.
 
+`SELECT` gehört zur `DQL` (Data Query Language), weil mit diesem Befehl Daten abgefragt und gelesen werden.
+
 ### 9.1 Einfaches SELECT
 `SELECT` dient zum Lesen von Daten. Mit `FROM` wird festgelegt, aus welcher Tabelle die Daten kommen.
 

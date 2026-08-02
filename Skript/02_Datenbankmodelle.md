@@ -15,16 +15,19 @@ Ein Datenbankmodell beschreibt, welche Dinge aus der realen Welt gespeichert wer
 Erst danach werden die Tabellen technisch mit `CREATE TABLE` umgesetzt.
 
 ### 2.2 Abstraktion
-Beim Modellieren wird nur der relevante Teil der Realität übernommen. Genau das nennt man Abstraktion: Der Datenbankinhalt ist immer nur ein Ausschnitt der Wirklichkeit.
+Beim Modellieren wird nur der relevante Teil der Realität übernommen. Das nennt man Abstraktion: Der Datenbankinhalt ist immer nur ein Ausschnitt der Wirklichkeit.
 
 Beispiel:
 - Für einen Automaten sind `seriennummer`, `modell`, `status` und `standort_id` wichtig.
-- Unwichtige Details (z. B. Farbe der internen Kabel) werden weggelassen.
+- Unwichtige Details (z. B. Farbe, Geruch, Kratzer oder interne Kabelverlegung) werden weggelassen.
 
 Gute Abstraktion bedeutet: so einfach wie möglich, aber so genau wie nötig.
 
 ### 2.3 Vorteile eines sauberen Modells
 Ein gutes Modell vermeidet doppelte Daten, vereinfacht Abfragen und macht Regeln sichtbar. In der Warenautomat-Datenbank sind `produkt`, `lieferant`, `automat` und `standort` typische Modellobjekte.
+Diese Art der Modellierung nach echten "Dingen" nennt sich semantische Modellierung. Eine Alternative (oder Ergänzung) hierzu ist die Normalisierung.
+
+
 
 ### 2.4 Weitere Datenbankmodelle
 Das relationale Modell ist sehr verbreitet, aber nicht das einzige Modell:

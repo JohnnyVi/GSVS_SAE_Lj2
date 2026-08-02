@@ -4,11 +4,7 @@
 
 ### 3.1 Primärschlüssel
 Ein Primärschlüssel identifiziert jede Zeile eindeutig. Das bedeutet: Mit diesem einen Wert kann genau ein Datensatz gefunden werden, ohne Verwechslung mit einem anderen Datensatz.
-
-Was heißt "identifizieren" genau?
-- Einen Datensatz eindeutig wiedererkennen.
-- Ihn gezielt finden, ändern oder mit anderen Tabellen verknüpfen.
-- Sicherstellen, dass es den Schlüsselwert nur einmal gibt.
+Primärschlüssel sind somit ein wichtiger Bestandteil der Modellierung.
 
 Beispiel:
 - In `automat` ist `automat_id = 17` genau ein bestimmter Automat.
@@ -16,13 +12,17 @@ Beispiel:
 
 Typische Primärschlüssel in der Warenautomat-Datenbank sind `standort_id`, `mitarbeiter_id`, `produkt_id` und `automat_id`.
 
+Man unterscheidet zwischen natürlichen Schlüsseln und künstlichen Primärschlüsseln (Surrogatschlüsseln):
+- Ein natürlicher Schlüssel besteht aus Daten, die ein Objekt bereits in der Realität eindeutig machen, zum Beispiel eine ISBN bei einem Buch oder der Personalausweisnummer bei Personen.
+- Ein Surrogatschlüssel ist ein technisch erzeugter Schlüssel ohne eigene fachliche Bedeutung, zum Beispiel eine laufende Zahl wie `produkt_id = 42`.
+
 ### 3.2 Fremdschlüssel
 Ein Fremdschlüssel ist ein Attribut, das auf den Primärschlüssel einer anderen Tabelle verweist. Dadurch werden Beziehungen technisch abgesichert und die Daten bleiben logisch verbunden.
 
 Konkretes Beispiel:
 - Tabelle `lieferant`: `lieferant_id` ist Primärschlüssel.
 - Tabelle `produkt`: `lieferant_id` ist Fremdschlüssel.
-- Bedeutung: Jedes Produkt muss einem vorhandenen Lieferanten zugeordnet sein.
+- Bedeutung: Jedes Produkt kann einem vorhandenen Lieferanten zugeordnet sein.
 
 Vereinfachte SQL-Definition:
 ```sql
@@ -50,9 +50,19 @@ Die Relationenschreibweise beschreibt Tabellen formal und kompakt. Eine Relation
 
 `RELATIONSNAME(attribut1, attribut2, attribut3, ...)`
 
+In dieser Schreibweise werden Primärschlüssel unterstrichen. Fremdschlüsseln wird zusätzlich ein Pfeil nach oben vorangestellt.
+
 Beispiele:
-- `STANDORT(standort_id, bezeichnung, strasse, hausnummer, plz, ort, land)`
-- `AUTOMAT(automat_id, seriennummer, modell, status, standort_id)`
+- STANDORT(<u>standort_id</u>, bezeichnung, strasse, hausnummer, plz, ort, land)
+- AUTOMAT(<u>automat_id</u>, seriennummer, modell, status, ↑standort_id)
+
+Neben dieser Kurzform gibt es auch eine Langform der Relationenschreibweise. Dabei werden zusätzlich Datentypen und bei Fremdschlüsseln auch die referenzierte Tabelle angegeben.
+
+Beispiel in Langform:
+- STANDORT(<u>standort_id</u>: BIGINT, bezeichnung: VARCHAR(100), strasse: VARCHAR(100), hausnummer: VARCHAR(10), plz: VARCHAR(10), ort: VARCHAR(100), land: VARCHAR(50))
+- AUTOMAT(<u>automat_id</u>: BIGINT, seriennummer: VARCHAR(50), modell: VARCHAR(100), status: VARCHAR(20), ↑standort_id: BIGINT -> STANDORT.standort_id)
+
+Die Langform ist besonders nützlich, wenn ein Modell genauer dokumentiert werden soll. Man erkennt damit nicht nur die Attribute, sondern auch deren Datentypen sowie die Beziehungen über Fremdschlüssel.
 
 Nutzen der Relationenschreibweise:
 - Sie macht das Datenmodell schnell lesbar.

@@ -2,7 +2,7 @@
 
 ## 5. Anomalien und Normalisierung
 
-Die Modelle aus dem vorigen Kapitel sind fachlich richtig aufgebaut, aber noch nicht automatisch optimal verteilt. Genau hier setzt die Normalisierung an: Sie überprüft, ob die Tabellenstruktur Redundanzen vermeidet und Änderungen sauber unterstützt.
+Die Modelle aus dem vorigen Kapitel sind fachlich richtig aufgebaut, aber noch nicht automatisch optimal verteilt. Hier setzt die Normalisierung an: Sie überprüft, ob die Tabellenstruktur Redundanzen vermeidet und Änderungen sauber unterstützt.
 
 ### 5.1 Anomalien
 Anomalien entstehen, wenn Daten unnötig mehrfach gespeichert werden oder Abhängigkeiten unsauber modelliert sind. Dadurch entstehen Widersprüche und Pflegeprobleme.
