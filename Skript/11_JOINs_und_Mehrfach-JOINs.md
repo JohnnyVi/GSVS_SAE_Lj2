@@ -2,10 +2,10 @@
 
 ## 11. JOINs und Mehrfach-JOINs
 
-Wenn einzelne Tabellenabfragen nicht mehr reichen, verbindet man Tabellen über ihre Beziehungen. JOINs machen die im Modell angelegten Verknüpfungen in Abfragen sichtbar.
+Da wir in der Modellierung oder bei der Normalisierung häufig Daten in verschiedenen Tabellen speichern, die wir aber gemeinsam in einer Abfrage benötigen, brauchen wir eine Möglichkeit, Daten aus mehreren Tabellen abzufragen. Dies geschieht mittels JOINs.
 
 ### 11.1 Einfacher JOIN
-Mit JOINs verbindet man Daten aus mehreren Tabellen über fachliche Beziehungen (meist Primär- und Fremdschlüssel).
+Mit JOINs verbindet man Daten aus mehreren Tabellen über Beziehungen (meist Primär- und Fremdschlüssel).
 
 Wichtige JOIN-Arten:
 1. `INNER JOIN`:
@@ -14,6 +14,10 @@ Wichtige JOIN-Arten:
     Alle Datensätze der linken Tabelle, auch wenn rechts kein Treffer existiert.
 3. `RIGHT JOIN`:
     Alle Datensätze der rechten Tabelle, auch wenn links kein Treffer existiert.
+4. `OUTER JOIN`:
+    Alle Datensätze beider Tabellen, auch wenn auf einer Seite kein Treffer existiert.
+5. `SELF JOIN`:
+    Eine Tabelle wird mit sich selbst verknüpft (z. B. Hierarchien oder Vergleiche innerhalb derselben Tabelle).
 
 Beispiel `INNER JOIN`:
 ```sql
@@ -29,31 +33,30 @@ FROM lieferant l
 LEFT JOIN produkt p ON p.lieferant_id = l.lieferant_id;
 ```
 
+Beispiel `FULL OUTER JOIN`:
+```sql
+SELECT l.name AS lieferant, p.name AS produkt
+FROM lieferant l
+FULL OUTER JOIN produkt p ON p.lieferant_id = l.lieferant_id;
+```
+
+Beispiel `SELF JOIN` (Automaten im gleichen Standort):
+```sql
+SELECT a1.seriennummer AS automat_1,
+             a2.seriennummer AS automat_2,
+             a1.standort_id
+FROM automat a1
+JOIN automat a2
+    ON a1.standort_id = a2.standort_id
+ AND a1.automat_id < a2.automat_id;
+```
+
 ### 11.2 JOIN über Fremdschlüssel
 JOINs folgen häufig genau den im Modell definierten Fremdschlüsseln.
-
-Typische Muster im Warenautomaten-Modell:
-- `automat.standort_id -> standort.standort_id`
-- `produkt.lieferant_id -> lieferant.lieferant_id`
-- `inventar.automat_id -> automat.automat_id`
-- `inventar.produkt_id -> produkt.produkt_id`
 
 `ON` und `WHERE` sauber trennen:
 1. `ON` beschreibt die Verknüpfungslogik zwischen Tabellen.
 2. `WHERE` filtert das Ergebnis nach der Verknüpfung.
-
-Besonders wichtig bei `LEFT JOIN`:
-- Bedingung in `WHERE` kann den `LEFT JOIN` unbeabsichtigt wie einen `INNER JOIN` wirken lassen.
-- Filter auf die rechte Tabelle deshalb oft direkt in `ON` formulieren.
-
-Beispiel (alle Lieferanten, aber nur aktive Produkte anhängen):
-```sql
-SELECT l.name AS lieferant, p.name AS produkt
-FROM lieferant l
-LEFT JOIN produkt p
-     ON p.lieferant_id = l.lieferant_id
-    AND p.aktiv = TRUE;
-```
 
 ### 11.3 Mehrfach-JOIN
 Mehrfache JOINs verbinden drei oder mehr Tabellen.
@@ -86,10 +89,9 @@ JOIN produkt p ON i.produkt_id = p.produkt_id;
 4. Mehrdeutige Spaltennamen:
     Ohne Alias ist oft unklar, aus welcher Tabelle eine Spalte kommt.
 5. Unerwartete Duplikate:
-    Bei 1:n- oder m:n-Beziehungen ist Mehrfachausgabe normal und muss fachlich korrekt interpretiert werden.
+    Bei 1:n- oder m:n-Beziehungen ist Mehrfachausgabe normal und muss korrekt interpretiert werden.
 
 ### Querverweise
-- [11.3 Mehrfach-JOIN](#113-mehrfach-join)
 - [Kapitel 3: Primär- und Fremdschlüssel](03_Primärschlüssel_Fremdschlüssel_Relationenschreibweise_und_Datenintegrität.md)
 - [Kapitel 9: SQL SELECT-Grundlagen](09_SQL_SELECT-Grundlagen.md)
 

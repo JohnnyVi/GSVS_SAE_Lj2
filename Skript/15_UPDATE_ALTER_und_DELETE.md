@@ -2,9 +2,26 @@
 
 ## 15. UPDATE, ALTER und DELETE
 
-Nach den Abfragen kommen die Operationen, die vorhandene Daten verändern oder die Struktur anpassen. Deshalb werden `UPDATE`, `ALTER TABLE` und `DELETE` erst behandelt, wenn das Lesen und Verstehen von Zielmengen bereits vertraut ist.
+`UPDATE`, `ALTER TABLE` und `DELETE` werden als Befehle zur Datenmanipulation (DML) gemeinsam betrachtet. DML dient grob dazu, Daten in einer bestehenden Datenbank gezielt zu verändern, zu ergänzen oder zu entfernen, statt nur Ergebnisse zu lesen.
 
-### 15.1 UPDATE
+### 15.1 Transaktionen und ACID
+Wenn man DML-Befehle ausführt, sollte man nach Möglichkeit in Transaktionen arbeiten. So lassen sich zusammengehörige Änderungen kontrolliert bestätigen (`COMMIT`) oder bei Fehlern vollständig zurücknehmen (`ROLLBACK`). Das reduziert das Risiko von Teiländerungen, inkonsistenten Daten und versehentlichen Massenänderungen deutlich.
+
+Eine Transaktion fasst mehrere Datenbankoperationen zu einer logischen Einheit zusammen. Entweder werden alle Schritte erfolgreich ausgeführt oder keiner davon wird dauerhaft gespeichert. Das ist besonders wichtig bei Änderungen, die mehrere Tabellen oder mehrere einzelne Statements betreffen.
+
+Das ACID-Prinzip beschreibt die wichtigsten Eigenschaften von Transaktionen:
+- Atomicity: Alles oder nichts. Eine Transaktion wird vollständig ausgeführt oder vollständig zurückgesetzt.
+- Consistency: Die Datenbank bleibt von einem gültigen Zustand in den nächsten gültigen Zustand überführt.
+- Isolation: Gleichzeitige Transaktionen beeinflussen sich möglichst nicht gegenseitig.
+- Durability: Nach einem erfolgreichen Commit bleiben die Daten dauerhaft gespeichert.
+
+Praktisch bedeutet das:
+- Eine neue Transaktion beginnt man meist mit `START TRANSACTION` oder `BEGIN`.
+- `COMMIT` speichert alle Änderungen einer Transaktion endgültig.
+- `ROLLBACK` macht alle Änderungen seit dem letzten sicheren Punkt wieder rückgängig.
+- Transaktionen sind bei DML-Änderungen der Standard, wenn mehrere Schritte zusammengehören oder Unsicherheit über die exakte Zielmenge besteht.
+
+### 15.2 UPDATE
 Mit `UPDATE` verändert man vorhandene Datensätze. Der wichtigste Sicherheitsaspekt ist die `WHERE`-Bedingung: Ohne passende Bedingung werden alle Zeilen geändert.
 
 Grundform:
@@ -32,7 +49,7 @@ SET status = 'WARTUNG'
 WHERE seriennummer = 'VM-SW-002';
 ```
 
-### 15.2 ALTER TABLE
+### 15.3 ALTER TABLE
 Mit `ALTER TABLE` verändert man die Tabellenstruktur, zum Beispiel durch neue Spalten, geänderte Datentypen oder zusätzliche Constraints.
 
 Typische Einsätze:
@@ -55,7 +72,7 @@ Wichtige Vorüberlegung:
 - Strukturänderungen können bestehende Daten betreffen.
 - Deshalb vorab prüfen, ob Altdaten die neue Regel erfüllen.
 
-### 15.3 DELETE
+### 15.4 DELETE
 Mit `DELETE` entfernt man Datensätze. Wie bei `UPDATE` ist `WHERE` entscheidend: Ohne Bedingung werden alle Zeilen gelöscht.
 
 Grundform:
@@ -81,7 +98,7 @@ DELETE FROM lieferant
 WHERE aktiv = FALSE;
 ```
 
-### 15.4 Typische Fehler bei UPDATE und DELETE
+### 15.5 Typische Fehler bei UPDATE und DELETE
 1. Fehlende oder zu breite `WHERE`-Bedingung:
     Zu viele Datensätze werden geändert oder gelöscht.
 2. Tippfehler in Bedingungen:
@@ -91,7 +108,7 @@ WHERE aktiv = FALSE;
 4. Verwechslung von Test- und Produktivdaten:
     Änderungen landen in der falschen Datenbank.
 
-### 15.5 Sicher arbeiten: Mini-Checkliste
+### 15.6 Sicher arbeiten: Mini-Checkliste
 Vor jeder Änderung:
 1. Welche Zeilen sollen betroffen sein?
 2. Kann ich die Zielmenge mit `SELECT` exakt anzeigen?
@@ -99,23 +116,9 @@ Vor jeder Änderung:
 4. Habe ich ein Backup oder arbeite ich in einer Transaktion?
 5. Stimmt die Anzahl der betroffenen Zeilen nach der Ausführung?
 
-### 15.6 Transaktionen und ACID
-Eine Transaktion fasst mehrere Datenbankoperationen zu einer logischen Einheit zusammen. Entweder werden alle Schritte erfolgreich ausgeführt oder keiner davon wird dauerhaft gespeichert. Das ist besonders wichtig bei Änderungen, die mehrere Tabellen oder mehrere einzelne Statements betreffen.
-
-Das ACID-Prinzip beschreibt die wichtigsten Eigenschaften von Transaktionen:
-- Atomicity: Alles oder nichts. Eine Transaktion wird vollständig ausgeführt oder vollständig zurückgesetzt.
-- Consistency: Die Datenbank bleibt von einem gültigen Zustand in den nächsten gültigen Zustand überführt.
-- Isolation: Gleichzeitige Transaktionen beeinflussen sich möglichst nicht gegenseitig.
-- Durability: Nach einem erfolgreichen Commit bleiben die Daten dauerhaft gespeichert.
-
-Praktisch bedeutet das:
-- Eine neue Transaktion beginnt man meist mit `START TRANSACTION` oder `BEGIN`.
-- `COMMIT` speichert alle Änderungen einer Transaktion endgültig.
-- `ROLLBACK` macht alle Änderungen seit dem letzten sicheren Punkt wieder rückgängig.
-- Transaktionen sind sinnvoll, wenn mehrere Änderungen zusammengehören und nicht nur teilweise übernommen werden dürfen.
-
 ### Querverweise
-- [15.1 UPDATE](#151-update)
+- [15.1 Transaktionen und ACID](#151-transaktionen-und-acid)
+- [15.2 UPDATE](#152-update)
 - [Kapitel 8: INSERT INTO](08_INSERT_INTO.md)
 - [Kapitel 16: SQL Injection](16_SQL_Injection.md)
 

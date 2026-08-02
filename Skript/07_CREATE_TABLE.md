@@ -17,7 +17,7 @@ Mit den passenden Datentypen und Regeln steht jetzt die technische Umsetzung der
 Mit `CREATE TABLE` wird ein Modell technisch in eine echte Datenbanktabelle umgesetzt. Dabei werden Spalten, Datentypen und Constraints definiert.
 
 Wichtig für den Arbeitsablauf:
-1. Zuerst entsteht das ER-Modell (fachliche Sicht mit Entitäten und Beziehungen).
+1. Zuerst entsteht das ER-Modell (inhaltliche Sicht mit Entitäten und Beziehungen).
 2. Danach folgt die relationale Schreibweise (formale Sicht auf Relationen und Attribute).
 3. Erst dann wird mit `CREATE TABLE` technisch implementiert.
 
@@ -45,7 +45,7 @@ Wichtige Constraints im Überblick:
 - `FOREIGN KEY`: Verknüpfung zu einer anderen Tabelle.
 - `NOT NULL`: Pflichtfeld.
 - `UNIQUE`: Keine doppelten Werte.
-- `CHECK`: Fachliche Werteprüfung.
+- `CHECK`: Inhaltliche Werteprüfung.
 - `DEFAULT`: Standardwert, falls kein Wert angegeben wird.
 
 ### 7.3 Vollständiges Beispiel: Tabelle mit allen zentralen Regeln
@@ -116,7 +116,8 @@ CREATE TABLE produkt_kurz (
 <details>
 <summary>Lösung</summary>
 
-**Lösung:** Die relationale Schreibweise. Sie übersetzt das fachliche ER-Modell in eine formale Tabellenstruktur und macht vor dem SQL klar, welche Attribute, Schlüssel und Beziehungen umgesetzt werden müssen.
+**Lösung:** Die relationale Schreibweise. Sie übersetzt das inhaltliche ER-Modell in eine formale Tabellenstruktur und macht vor dem SQL klar, welche Attribute, Schlüssel und Beziehungen umgesetzt werden müssen.
+**Lösung:** Die relationale Schreibweise. Sie übersetzt das inhaltliche ER-Modell in eine formale Tabellenstruktur und macht vor dem SQL klar, welche Attribute, Schlüssel und Beziehungen umgesetzt werden müssen.
 
 </details>
 

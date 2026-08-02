@@ -2,7 +2,7 @@
 
 ## 6. SQL-Felddatentypen
 
-Wenn das Modell fachlich sauber ist, braucht jede Spalte noch einen passenden Datentyp. Erst dadurch wird aus der Struktur eine belastbare technische Tabelle.
+Wenn das Modell inhaltlich sauber ist, braucht jede Spalte noch einen passenden Datentyp. Erst dadurch wird aus der Struktur eine belastbare technische Tabelle.
 
 ### 6.1 Zeichenketten, Zahlen und Daten
 Datentypen bestimmen, welche Werte in eine Spalte passen und wie diese Werte intern gespeichert werden. Eine gute Typwahl verbessert Datenqualität, Speicherbedarf und Abfragegeschwindigkeit.
@@ -41,7 +41,7 @@ Praxisregeln für die Typwahl:
 
 Beispiele aus dem Warenautomaten-Kontext:
 - `preis_eur` als `NUMERIC(8,2)` für exakte Cent-Werte.
-- `status` als `VARCHAR`, wenn mehrere fachliche Zustände möglich sind.
+- `status` als `VARCHAR`, wenn mehrere inhaltliche Zustände möglich sind.
 - `aktiv` als `BOOLEAN`, wenn nur ja/nein benötigt wird.
 - Primärschlüssel je nach Strategie als `BIGINT` oder `UUID`.
 
@@ -73,7 +73,7 @@ Beispiele aus dem Warenautomaten-Kontext:
 <details>
 <summary>Lösung</summary>
 
-**Lösung:** `VARCHAR`, weil dort fachliche Werte wie `AKTIV`, `WARTUNG` oder `AUSSER_BETRIEB` gespeichert werden.
+**Lösung:** `VARCHAR`, weil dort inhaltliche Werte wie `AKTIV`, `WARTUNG` oder `AUSSER_BETRIEB` gespeichert werden.
 
 </details>
 

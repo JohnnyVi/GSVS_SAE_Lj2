@@ -2,7 +2,7 @@
 
 ## 5. Anomalien und Normalisierung
 
-Die Modelle aus dem vorigen Kapitel sind fachlich richtig aufgebaut, aber noch nicht automatisch optimal verteilt. Hier setzt die Normalisierung an: Sie überprüft, ob die Tabellenstruktur Redundanzen vermeidet und Änderungen sauber unterstützt.
+Die Modelle aus dem vorigen Kapitel sind inhaltlich richtig aufgebaut, aber noch nicht automatisch optimal verteilt. Hier setzt die Normalisierung an: Sie überprüft, ob die Tabellenstruktur Redundanzen vermeidet und Änderungen sauber unterstützt.
 
 ### 5.1 Anomalien
 Anomalien entstehen, wenn Daten unnötig mehrfach gespeichert werden oder Abhängigkeiten unsauber modelliert sind. Dadurch entstehen Widersprüche und Pflegeprobleme.
@@ -23,7 +23,7 @@ Beispiele (vereinfacht):
 ### 5.2 Normalisierung
 Normalisierung zerlegt Daten so, dass Abhängigkeiten sauber modelliert sind und Anomalien reduziert werden. In der Warenautomat-Datenbank sieht man das gut an der Trennung von `produkt` und `lieferant` sowie von `automat` und `standort`.
 
-Normalisierung ist damit eine Art alternative Sicht auf die semantische Modellierung: Während die semantische Modellierung zuerst fachliche Objekte, Beziehungen und Bedeutungen beschreibt, fragt die Normalisierung zusätzlich danach, wie diese Informationen so auf Tabellen verteilt werden, dass Redundanzen und Anomalien möglichst vermieden werden.
+Normalisierung ist damit eine Art alternative Sicht auf die semantische Modellierung: Während die semantische Modellierung zuerst inhaltliche Objekte, Beziehungen und Bedeutungen beschreibt, fragt die Normalisierung zusätzlich danach, wie diese Informationen so auf Tabellen verteilt werden, dass Redundanzen und Anomalien möglichst vermieden werden.
 
 Ziel der Normalisierung:
 - Redundanzen verringern
@@ -63,7 +63,7 @@ Normalisierte Struktur:
 - `standort(standort_id, bezeichnung, ort, ... )`
 - `automat(automat_id, seriennummer, standort_id, ... )`
 
-Damit ist jede Information an der fachlich richtigen Stelle gespeichert.
+Damit ist jede Information an der inhaltlich richtigen Stelle gespeichert.
 
 ### Querverweise
 - [5.3 Die Grundidee von 1NF, 2NF und 3NF](#53-die-grundidee-von-1nf-2nf-und-3nf)

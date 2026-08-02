@@ -110,7 +110,6 @@ WHERE hinweis IS NULL;
 ```
 
 ### Querverweise
-- [9.2 WHERE](#92-where)
 - [Kapitel 10: Rechenoperatoren und Aliase](10_Rechenoperatoren_in_SQL_und_Aliase.md)
 - [Kapitel 11: JOINs und Mehrfach-JOINs](11_JOINs_und_Mehrfach-JOINs.md)
 

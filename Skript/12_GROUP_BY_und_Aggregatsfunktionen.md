@@ -45,7 +45,7 @@ GROUP BY kategorie;
 
 Wichtige Regel:
 - Alle Spalten in `SELECT`, die nicht aggregiert sind, müssen in `GROUP BY` stehen.
-- Sonst entstehen je nach SQL-Modus Fehler oder fachlich unklare Ergebnisse.
+- Sonst entstehen je nach SQL-Modus Fehler oder  unklare Ergebnisse.
 
 ### 12.3 GROUP BY mit mehreren Spalten
 Gruppierung kann über mehrere Spalten erfolgen.
@@ -76,7 +76,7 @@ GROUP BY l.name;
     Spalte ist weder aggregiert noch in `GROUP BY` enthalten.
 2. Verwechslung von `WHERE` und `HAVING`:
     `WHERE` filtert vor der Gruppierung, `HAVING` nach der Gruppierung.
-3. Falsche fachliche Gruppierung:
+3. Falsche inhaltliche Gruppierung:
     Zu grob oder zu fein gruppiert, dadurch falsche Kennzahlen.
 4. Fehlende Sortierung:
     Ergebnisse ohne `ORDER BY` sind oft schwer vergleichbar.
@@ -93,7 +93,6 @@ ORDER BY anzahl DESC;
 ```
 
 ### Querverweise
-- [12.2 GROUP BY](#122-group-by)
 - [Kapitel 10: Rechenoperatoren und Aliase](10_Rechenoperatoren_in_SQL_und_Aliase.md)
 - [Kapitel 13: HAVING](13_HAVING.md)
 
@@ -171,7 +170,7 @@ GROUP BY kategorie;
 <details>
 <summary>Lösung</summary>
 
-**Lösung:** `name` ist weder aggregiert noch Teil von `GROUP BY`. Das ist fachlich uneindeutig und in vielen SQL-Modi nicht erlaubt.
+**Lösung:** `name` ist weder aggregiert noch Teil von `GROUP BY`. Das ist inhaltlich uneindeutig und in vielen SQL-Modi nicht erlaubt.
 
 </details>
 

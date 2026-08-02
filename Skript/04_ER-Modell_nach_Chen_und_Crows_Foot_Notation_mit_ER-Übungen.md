@@ -3,7 +3,7 @@
 ## 4. ER-Modell nach Chen und Crow's Foot Notation mit ER-Übungen
 
 ### 4.1 Was ist Modellierung?
-Modellierung bedeutet, einen fachlichen Ausschnitt der Wirklichkeit so darzustellen, dass er für ein Datenbanksystem verständlich wird. Im Kontext von Datenbanken spricht man dabei auch von semantischer Modellierung, weil die Bedeutung der Daten und ihrer Beziehungen im Mittelpunkt steht.
+Modellierung bedeutet, einen inhaltlichen Ausschnitt der Wirklichkeit so darzustellen, dass er für ein Datenbanksystem verständlich wird. Im Kontext von Datenbanken spricht man dabei auch von semantischer Modellierung, weil die Bedeutung der Daten und ihrer Beziehungen im Mittelpunkt steht.
 
 ### 4.2 ER-Modell nach Chen
 Im Chen-Modell werden Entitäten als Rechtecke, Beziehungen als Rauten und Attribute als Ovale dargestellt.
@@ -52,7 +52,7 @@ Tabellarische Darstellung (Beispiel aus dem Warenautomaten-Modell):
 | `inventar` | `inventar_id` | `automat_id`, `produkt_id` | Verknüpft Automat und Produkt mit Bestandsdaten |
 
 So wird in Crow's Foot sehr schnell sichtbar:
-- Welche Tabelle fachlich unabhängig ist.
+- Welche Tabelle inhaltlich unabhängig ist.
 - Welche Tabelle von anderen abhängt (wegen FK).
 - Wo eine ehemals m:n-Beziehung bereits technisch aufgelöst wurde.
 

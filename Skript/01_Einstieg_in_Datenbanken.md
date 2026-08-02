@@ -25,7 +25,7 @@ Die Warenautomat-Datenbank zeigt diese Grundbegriffe an einem realen Beispiel. D
 Relationale Datenbanken speichern Daten in Tabellen (Relationen), die über Schlüssel miteinander verbunden sind. Das Ziel ist, Daten logisch zu trennen und trotzdem gemeinsam auswerten zu können.
 
 Wichtige Merkmale:
-1. Jede Tabelle beschreibt genau einen fachlichen Bereich (z. B. Automat, Standort, Produkt).
+1. Jede Tabelle beschreibt genau einen inhaltlichen Bereich (z. B. Automat, Standort, Produkt).
 2. Jede Zeile (Tupel) ist eindeutig über einen Primärschlüssel identifizierbar.
 3. Beziehungen zwischen Tabellen werden über Fremdschlüssel hergestellt.
 4. SQL erlaubt das gemeinsame Abfragen mehrerer Tabellen über JOINs.

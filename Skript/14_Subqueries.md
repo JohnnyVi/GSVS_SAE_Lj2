@@ -100,7 +100,6 @@ WHERE NOT EXISTS (
 ```
 
 ### Querverweise
-- [14.3 EXISTS statt IN](#143-exists-statt-in)
 - [Kapitel 9: SQL SELECT-Grundlagen](09_SQL_SELECT-Grundlagen.md)
 - [Kapitel 13: HAVING](13_HAVING.md)
 

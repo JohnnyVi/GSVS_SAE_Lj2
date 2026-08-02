@@ -14,7 +14,7 @@ Typische Primärschlüssel in der Warenautomat-Datenbank sind `standort_id`, `mi
 
 Man unterscheidet zwischen natürlichen Schlüsseln und künstlichen Primärschlüsseln (Surrogatschlüsseln):
 - Ein natürlicher Schlüssel besteht aus Daten, die ein Objekt bereits in der Realität eindeutig machen, zum Beispiel eine ISBN bei einem Buch oder der Personalausweisnummer bei Personen.
-- Ein Surrogatschlüssel ist ein technisch erzeugter Schlüssel ohne eigene fachliche Bedeutung, zum Beispiel eine laufende Zahl wie `produkt_id = 42`.
+- Ein Surrogatschlüssel ist ein technisch erzeugter Schlüssel ohne eigene inhaltliche Bedeutung, zum Beispiel eine laufende Zahl wie `produkt_id = 42`.
 
 ### 3.2 Fremdschlüssel
 Ein Fremdschlüssel ist ein Attribut, das auf den Primärschlüssel einer anderen Tabelle verweist. Dadurch werden Beziehungen technisch abgesichert und die Daten bleiben logisch verbunden.
@@ -90,7 +90,7 @@ Wichtige Integritätsarten:
 3. Domänenintegrität:
     Werte müssen zum Datentyp und zu Regeln passen (z. B. `CHECK (preis_eur > 0)`).
 4. Benutzerdefinierte Geschäftsregeln:
-    Fachliche Vorgaben, z. B. ein Automat darf nur bestimmte Statuswerte haben.
+    Inhaltliche Vorgaben, z. B. ein Automat darf nur bestimmte Statuswerte haben.
 
 Technisch wird Datenintegrität durch Constraints sichergestellt, vor allem:
 - `NOT NULL`
@@ -112,7 +112,7 @@ Je sauberer diese Regeln definiert sind, desto weniger Fehler entstehen später 
 <details>
 <summary>Lösung</summary>
 
-**Lösung:** Weil jede Automatenzeile eindeutig identifiziert werden kann und sich die ID fachlich nicht ändert.
+**Lösung:** Weil jede Automatenzeile eindeutig identifiziert werden kann und sich die ID inhaltlich nicht ändert.
 
 </details>
 

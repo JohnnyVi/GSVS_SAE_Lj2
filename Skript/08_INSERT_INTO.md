@@ -50,7 +50,7 @@ Beim Einfügen treten besonders oft folgende Fehler auf:
 4. `UNIQUE` verletzt:
     Ein Wert, der eindeutig sein muss (z. B. Seriennummer), wird doppelt eingefügt.
 5. `CHECK` verletzt:
-    Ein Wert passt nicht zur fachlichen Regel (z. B. negativer Preis).
+    Ein Wert passt nicht zur inhaltlichen Regel (z. B. negativer Preis).
 6. Datentyp-Konflikt:
     Ein Text wird in eine Zahlenspalte geschrieben oder ein Datum hat falsches Format.
 
@@ -120,7 +120,7 @@ VALUES
 <details>
 <summary>Lösung</summary>
 
-**Lösung:** Mindestens `seriennummer`, `modell` und `standort_id`, weil diese Informationen den Automaten fachlich beschreiben und `standort_id` die referenzielle Zuordnung zum Standort sicherstellt.
+**Lösung:** Mindestens `seriennummer`, `modell` und `standort_id`, weil diese Informationen den Automaten inhaltlich beschreiben und `standort_id` die referenzielle Zuordnung zum Standort sicherstellt.
 
 </details>
 

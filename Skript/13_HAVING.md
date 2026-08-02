@@ -4,6 +4,20 @@
 
 Wenn Gruppen gebildet wurden, braucht man oft noch einen Filter auf das Gruppenergebnis. Genau an dieser Stelle kommt `HAVING` zum Einsatz.
 
+Die logische Verarbeitungsreihenfolge einer typischen SQL-Abfrage ist:
+1. `FROM` / `JOIN`
+2. `WHERE`
+3. `GROUP BY`
+4. `HAVING`
+5. `SELECT`
+6. `ORDER BY`
+7. `LIMIT`
+
+Warum `HAVING` existiert:
+- Nach `GROUP BY` entstehen Gruppen mit Aggregatwerten wie `COUNT(*)`, `AVG(...)` oder `SUM(...)`.
+- `WHERE` ist zu diesem Zeitpunkt bereits abgeschlossen und kann diese Gruppenergebnisse nicht mehr filtern.
+- `HAVING` schließt genau diese Lücke: Es filtert auf Gruppenebene nach der Aggregation.
+
 ### 13.1 Filter nach Gruppenbildung
 `HAVING` filtert Ergebnisse nach `GROUP BY`. Es wirkt auf Gruppen, nicht auf einzelne Zeilen.
 
@@ -79,8 +93,7 @@ HAVING COUNT(*) > 3;
 ```
 
 ### Querverweise
-- [13.2 HAVING und WHERE](#132-having-und-where)
-- [Kapitel 9: SQL SELECT-Grundlagen](09_SQL_SELECT-Grundlagen.md)
+(09_SQL_SELECT-Grundlagen.md)
 - [Kapitel 12: GROUP BY und Aggregatsfunktionen](12_GROUP_BY_und_Aggregatsfunktionen.md)
 
 ### Übungen zum Kapitel

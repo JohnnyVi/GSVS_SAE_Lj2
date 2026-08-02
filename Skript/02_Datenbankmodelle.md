@@ -5,7 +5,8 @@
 ### 2.1 Vom realen Problem zur Tabelle
 Ein Datenbankmodell beschreibt, welche Dinge aus der realen Welt gespeichert werden sollen und wie sie zusammenhängen. Der Weg vom Problem zur Datenbank läuft typischerweise in Schritten:
 
-1. Fachlichen Ausschnitt festlegen: Was soll das System können (z. B. Bestand je Automat verwalten)?
+1. Inhaltlichen Ausschnitt festlegen: Was soll das System können (z. B. Bestand je Automat verwalten)?
+1. Inhaltlichen Ausschnitt festlegen: Was soll das System können (z. B. Bestand je Automat verwalten)?
 2. Objekte finden: Welche Entitäten gibt es (z. B. `automat`, `produkt`, `standort`)?
 3. Eigenschaften festlegen: Welche Attribute braucht jede Entität?
 4. Beziehungen und Kardinalitäten bestimmen: 1:1, 1:n oder m:n.

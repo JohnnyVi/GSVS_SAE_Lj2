@@ -98,7 +98,6 @@ FROM produkt;
 4. Falsche Prozentlogik (z. B. `preis * 20` statt `preis * 0.20`).
 
 ### Querverweise
-- [10.3 Ausdrücke mit Berechnung](#103-ausdrücke-mit-berechnung)
 - [Kapitel 9: SQL SELECT-Grundlagen](09_SQL_SELECT-Grundlagen.md)
 - [Kapitel 12: GROUP BY und Aggregatsfunktionen](12_GROUP_BY_und_Aggregatsfunktionen.md)
 

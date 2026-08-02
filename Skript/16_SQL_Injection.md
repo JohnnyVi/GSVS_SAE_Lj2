@@ -4,6 +4,8 @@
 
 Zum Abschluss geht es um die Sicherheit bei Datenbankzugriffen. SQL Injection zeigt, warum Abfragen nicht aus unkontrollierten Eingaben zusammengesetzt werden dürfen.
 
+Passender XKCD-Comic dazu ("Exploits of a Mom"): <https://xkcd.com/327/>
+
 ### 16.1 Gefahren
 SQL Injection entsteht, wenn Benutzereingaben direkt als Teil eines SQL-Strings zusammengesetzt werden. Dabei kann die Eingabe die eigentliche Abfragelogik verändern.
 
@@ -49,7 +51,7 @@ ResultSet rs = ps.executeQuery();
 ```
 
 Wichtig:
-- Auch bei Prepared Statements sollten Eingaben fachlich validiert werden.
+- Auch bei Prepared Statements sollten Eingaben  validiert werden.
 - Passwörter nie im Klartext speichern, sondern als sicheren Hash.
 
 ### 16.3 Typische Irrtümer
@@ -63,13 +65,12 @@ Wichtig:
 ### 16.4 Praktische Checkliste
 Vor jedem Datenbankzugriff prüfen:
 1. Werden Eingaben als Parameter gebunden?
-2. Gibt es eine fachliche Eingabevalidierung?
+2. Gibt es eine inhaltliche Eingabevalidierung?
 3. Sind DB-Rechte auf das Nötigste begrenzt?
 4. Werden sicherheitsrelevante Ereignisse protokolliert?
 5. Werden technische Fehlermeldungen nicht direkt an Endnutzer ausgegeben?
 
 ### Querverweise
-- [16.2 Schutzmaßnahmen](#162-schutzmaßnahmen)
 - [Kapitel 9: SQL SELECT-Grundlagen](09_SQL_SELECT-Grundlagen.md)
 - [Kapitel 15: UPDATE, ALTER und DELETE](15_UPDATE_ALTER_und_DELETE.md)
 
