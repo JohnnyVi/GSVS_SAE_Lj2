@@ -1,0 +1,61 @@
+---
+layout: default
+---
+
+{% assign chapters = site.data.chapters %}
+{% assign current_index = -1 %}
+
+{% for chapter in chapters %}
+  {% if chapter.source == page.name %}
+    {% assign current_index = forloop.index0 %}
+  {% endif %}
+{% endfor %}
+
+{% assign previous_index = current_index | minus: 1 %}
+{% assign next_index = current_index | plus: 1 %}
+{% assign previous_chapter = nil %}
+{% assign next_chapter = nil %}
+
+{% for chapter in chapters %}
+  {% if forloop.index0 == previous_index %}
+    {% assign previous_chapter = chapter %}
+  {% endif %}
+  {% if forloop.index0 == next_index %}
+    {% assign next_chapter = chapter %}
+  {% endif %}
+{% endfor %}
+
+<div class="chapter-layout">
+  <aside class="chapter-sidebar" aria-label="Kapitelnavigation">
+    <p class="chapter-sidebar-label">Kapitel</p>
+    <a class="chapter-overview-link" href="{{ '/' | relative_url }}">Zur Übersicht</a>
+    <nav>
+      <ul class="chapter-nav-list">
+        {% for chapter in chapters %}
+          <li>
+            <a href="{{ '/Skript/' | append: chapter.output | relative_url }}"{% if chapter.source == page.name %} class="is-active" aria-current="page"{% endif %}>{{ chapter.short }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <a class="chapter-sidebar-brand" href="{{ '/' | relative_url }}" aria-label="Zur Übersicht">
+      <img class="chapter-sidebar-logo" src="{{ '/assets/images/gsvs-logo.png' | relative_url }}" alt="GSVS Logo">
+    </a>
+  </aside>
+
+  <article class="chapter-content">
+    {{ content }}
+
+    <nav class="chapter-pagination" aria-label="Kapitelwechsel">
+      <a class="chapter-pagination-link" href="{{ '/' | relative_url }}">Zur Übersicht</a>
+
+      {% if previous_chapter %}
+        <a class="chapter-pagination-link" href="{{ '/Skript/' | append: previous_chapter.output | relative_url }}">Zurück: {{ previous_chapter.short }}</a>
+      {% endif %}
+
+      {% if next_chapter %}
+        <a class="chapter-pagination-link" href="{{ '/Skript/' | append: next_chapter.output | relative_url }}">Weiter: {{ next_chapter.short }}</a>
+      {% endif %}
+    </nav>
+  </article>
+</div>

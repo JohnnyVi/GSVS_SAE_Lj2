@@ -1,0 +1,12 @@
+title: "SAE 2. Lehrjahr der Fachinformatiker"
+description: "Skripte und Notizen für das 2. Lehrjahr der Fachinformatiker von Herrn Vöhringer an der GSVS"
+remote_theme: pages-themes/hacker@v0.2.0
+markdown: kramdown
+show_downloads: false
+plugins:
+  - jekyll-remote-theme
+defaults:
+  - scope:
+      path: "Skript"
+    values:
+      layout: chapter
