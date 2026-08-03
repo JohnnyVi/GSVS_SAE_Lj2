@@ -10,13 +10,13 @@ Dieses Repository enthält das Datenbank-Skript von Herrn Vöhringer für das 2.
 
 ## Einstieg
 
-- Startseite für GitHub Pages: [index.md](index.md)
+- Startseite für GitHub Pages: [GitHub Pages](https://johnnyvi.github.io/GSVS_SAE_Lj2/)
 - Kapitel liegen im Ordner: [Skript](Skript/)
 
 ## Struktur
 
 - [README.md](README.md): Allgemeine Hinweise und Orientierung
-- [index.md](index.md): Landingpage mit Themen-Navigation
+- [GitHub Pages](https://johnnyvi.github.io/GSVS_SAE_Lj2/): Landingpage mit Themen-Navigation
 - [config.yml](config.yml): Basis-Konfiguration für die Pages-Darstellung
 - [Skript](Skript/): Fachliche Inhalte als einzelne Kapiteldateien
 
@@ -29,7 +29,7 @@ Dieses Repository enthält das Datenbank-Skript von Herrn Vöhringer für das 2.
 
 ## Hinweise zu GitHub Pages
 
-- Einstiegspunkt ist [index.md](index.md) im Root-Verzeichnis.
+- Einstiegspunkt ist die [GitHub Pages-Seite](https://johnnyvi.github.io/GSVS_SAE_Lj2/).
 - Falls später Jekyll-Optionen benötigt werden, kann aus [config.yml](config.yml) eine Datei mit dem Namen _config.yml werden (Jekyll-Standardname).
 
 ## Arbeitsstand
