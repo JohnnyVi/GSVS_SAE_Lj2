@@ -61,6 +61,49 @@ layout: default
 </div>
 
 <style>
+  .chapter-content .callout {
+    margin: 1rem 0;
+    padding: 0.85rem 0.95rem;
+    border: 1px solid #2f4f2f;
+    border-left-width: 0.35rem;
+    border-radius: 6px;
+    background: rgba(106, 168, 79, 0.12);
+  }
+
+  .chapter-content .callout p:last-child {
+    margin-bottom: 0;
+  }
+
+  .chapter-content .callout-title {
+    margin: 0 0 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #d6f7a7;
+  }
+
+  .chapter-content .callout-note {
+    border-left-color: #6aa84f;
+    background: rgba(106, 168, 79, 0.12);
+  }
+
+  .chapter-content .callout-important {
+    border-left-color: #c9a227;
+    background: rgba(201, 162, 39, 0.14);
+  }
+
+  .chapter-content .callout-warning,
+  .chapter-content .callout-caution {
+    border-left-color: #d96a4c;
+    background: rgba(217, 106, 76, 0.14);
+  }
+
+  .chapter-content .callout-tip {
+    border-left-color: #4ca3dd;
+    background: rgba(76, 163, 221, 0.14);
+  }
+
   .chapter-content .mermaid {
     margin: 1.25rem 0;
     padding: 1rem;
@@ -77,6 +120,54 @@ layout: default
 </style>
 
 <script type="module">
+  const calloutPattern = /^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/i;
+
+  function enhanceCallouts() {
+    const blockquotes = document.querySelectorAll(".chapter-content blockquote");
+
+    blockquotes.forEach((blockquote) => {
+      const firstParagraph = blockquote.querySelector("p");
+      if (!firstParagraph) {
+        return;
+      }
+
+      const markerMatch = firstParagraph.textContent.trimStart().match(calloutPattern);
+      if (!markerMatch) {
+        return;
+      }
+
+      const calloutType = markerMatch[1].toLowerCase();
+      const calloutTitleMap = {
+        note: "Hinweis",
+        tip: "Tipp",
+        important: "Wichtig",
+        warning: "Warnung",
+        caution: "Achtung"
+      };
+
+      blockquote.classList.add("callout", `callout-${calloutType}`);
+
+      const firstTextNode = Array.from(firstParagraph.childNodes).find(
+        (node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0
+      );
+
+      if (firstTextNode) {
+        firstTextNode.textContent = firstTextNode.textContent.replace(calloutPattern, "");
+      } else {
+        firstParagraph.innerHTML = firstParagraph.innerHTML.replace(calloutPattern, "");
+      }
+
+      if (!firstParagraph.textContent.trim()) {
+        firstParagraph.remove();
+      }
+
+      const titleElement = document.createElement("p");
+      titleElement.className = "callout-title";
+      titleElement.textContent = calloutTitleMap[calloutType] || calloutType.toUpperCase();
+      blockquote.insertBefore(titleElement, blockquote.firstChild);
+    });
+  }
+
   const mermaidSelector =
     "pre > code.language-mermaid, .language-mermaid pre code, code[class*='language-mermaid']";
 
@@ -128,6 +219,8 @@ layout: default
   }
 
   (async () => {
+    enhanceCallouts();
+
     try {
       const { default: mermaid } = await import(
         "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs"
