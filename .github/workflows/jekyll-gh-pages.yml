@@ -24,6 +24,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Materialize Skript content for Jekyll
+        run: |
+          rm -f src/Skript
+          cp -R Skript src/Skript
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
