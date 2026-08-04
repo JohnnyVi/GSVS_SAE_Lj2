@@ -1,4 +1,7 @@
-﻿# Skript: Datenbanken und SQL mit der Warenautomat-Datenbank
+﻿---
+---
+
+# Skript: Datenbanken und SQL mit der Warenautomat-Datenbank
 
 ## 13. HAVING
 

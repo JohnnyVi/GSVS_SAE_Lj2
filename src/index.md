@@ -8,7 +8,7 @@ Willkommen. Diese Seite ist der Einstieg für dieses Repository auf GitHub Pages
 
 ## Schnellstart
 
-- [Zur README](README.md)
+- [Zur README](https://github.com/johnnyvi/GSVS_SAE_Lj2/blob/main/README.md)
 - [Mit Kapitel 00 starten]({{ '/Skript/00_Einleitung.html' | relative_url }})
 
 ## Themenbereiche

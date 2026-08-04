@@ -1,4 +1,7 @@
-﻿# Skript: Datenbanken und SQL mit der Warenautomat-Datenbank
+﻿---
+---
+
+# Skript: Datenbanken und SQL mit der Warenautomat-Datenbank
 
 ## 4. ER-Modell nach Chen und Crow's Foot Notation mit ER-Übungen
 
