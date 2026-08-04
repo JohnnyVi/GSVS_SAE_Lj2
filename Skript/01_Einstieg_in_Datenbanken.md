@@ -34,10 +34,11 @@ Wichtige Merkmale:
 4. SQL erlaubt das gemeinsame Abfragen mehrerer Tabellen über JOINs.
 5. Integritätsregeln (`NOT NULL`, `UNIQUE`, `CHECK`, FK-Constraints) sichern Datenqualität.
 
-Beispiel aus der Warenautomat-Datenbank:
-- `standort` enthält Stammdaten zum Ort.
-- `automat` enthält Stammdaten zum Gerät und verweist über `standort_id` auf `standort`.
-- `inventar` verknüpft `automat` und `produkt` und speichert beziehungsbezogene Daten wie Fachnummer und Bestand.
+> [!NOTE]
+> Beispiel aus der Warenautomat-Datenbank:
+> - `standort` enthält Stammdaten zum Ort.
+> - `automat` enthält Stammdaten zum Gerät und verweist über `standort_id` auf `standort`.
+> - `inventar` verknüpft `automat` und `produkt` und speichert beziehungsbezogene Daten wie Fachnummer und Bestand.
 
 Dadurch werden Redundanzen vermieden: Eine Adressänderung am Standort wird genau einmal in `standort` gepflegt und gilt sofort für alle zugeordneten Automaten.
 

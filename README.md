@@ -39,5 +39,4 @@ Das Repository wird laufend erweitert (Work in Progress).
 ## Geplante Erweiterungen
 
 - Übungsaufgaben mit Musterlösungen
-- Kleine Projektbeispiele mit SQL-Skripten
 - Kompakte Cheatsheets für Wiederholung und Prüfungsvorbereitung

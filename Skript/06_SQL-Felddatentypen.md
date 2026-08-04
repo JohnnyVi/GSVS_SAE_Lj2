@@ -29,8 +29,6 @@ Wichtige SQL-Datentypen im Überblick:
 | `UUID` | Kennung | Universell eindeutige ID (128 Bit) | `550e8400-e29b-41d4-a716-446655440000` |
 | `BLOB` / `BYTEA` | Binärdaten | Datei- oder Binärinhalte | Bild, Signaturdatei |
 
-Hinweis zu "UID": In SQL-Systemen ist damit meistens `UUID` gemeint (Universally Unique Identifier). Manche Systeme verwenden den Begriff UID nur allgemein für "eindeutige Kennung".
-
 ### 6.2 Passende Typwahl
 Die Wahl des Datentyps sollte sparsam, aber passend sein. Zu kurze oder unpassende Typen führen zu Fehlern oder unnötigem Speicherverbrauch.
 

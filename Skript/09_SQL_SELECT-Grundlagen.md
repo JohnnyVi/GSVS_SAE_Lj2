@@ -38,12 +38,13 @@ Logische Verknüpfungen:
 - `OR`: Mindestens eine Bedingung muss wahr sein.
 - `NOT`: Bedingung wird verneint.
 
-Beispiel:
-```sql
-SELECT automat_id, seriennummer, status
-FROM automat
-WHERE status = 'AKTIV' AND standort_id = 3;
-```
+> [!NOTE]
+> Beispiel:
+> ```sql
+> SELECT automat_id, seriennummer, status
+> FROM automat
+> WHERE status = 'AKTIV' AND standort_id = 3;
+> ```
 
 Operator-Priorität in `WHERE`:
 1. `NOT`
@@ -52,14 +53,15 @@ Operator-Priorität in `WHERE`:
 
 Darum sind Klammern wichtig, wenn `AND` und `OR` zusammen vorkommen.
 
-Beispiel ohne Klammern (oft missverstanden):
-```sql
-WHERE status = 'AKTIV' OR status = 'WARTUNG' AND standort_id = 3
-```
-Das wird interpretiert als:
-```sql
-WHERE status = 'AKTIV' OR (status = 'WARTUNG' AND standort_id = 3)
-```
+> [!IMPORTANT]
+> Beispiel ohne Klammern (oft missverstanden):
+> ```sql
+> WHERE status = 'AKTIV' OR status = 'WARTUNG' AND standort_id = 3
+> ```
+> Das wird interpretiert als:
+> ```sql
+> WHERE status = 'AKTIV' OR (status = 'WARTUNG' AND standort_id = 3)
+> ```
 
 Gewollte Logik mit Klammern:
 ```sql
@@ -87,13 +89,14 @@ Platzhalter:
 - `%` steht für beliebig viele Zeichen.
 - `_` steht für genau ein Zeichen.
 
-Beispiele:
-```sql
-WHERE name LIKE 'Schoko%'   -- beginnt mit Schoko
-WHERE name LIKE '%Riegel'   -- endet mit Riegel
-WHERE name LIKE '%mix%'     -- enthält mix
-WHERE code LIKE 'A_3'       -- A, dann ein Zeichen, dann 3
-```
+> [!NOTE]
+> Beispiele:
+> ```sql
+> WHERE name LIKE 'Schoko%'   -- beginnt mit Schoko
+> WHERE name LIKE '%Riegel'   -- endet mit Riegel
+> WHERE name LIKE '%mix%'     -- enthält mix
+> WHERE code LIKE 'A_3'       -- A, dann ein Zeichen, dann 3
+> ```
 
 ### 9.5 Häufige Filterfehler und wie man sie vermeidet
 1. Fehlende Klammern bei `AND`/`OR`:
@@ -105,12 +108,13 @@ WHERE code LIKE 'A_3'       -- A, dann ein Zeichen, dann 3
 4. Unklare Sortierung:
     Bei Berichten immer explizit `ORDER BY` angeben.
 
-Zusatzbeispiel zu `NULL`:
-```sql
-SELECT automat_id, hinweis
-FROM standort
-WHERE hinweis IS NULL;
-```
+> [!NOTE]
+> Zusatzbeispiel zu `NULL`:
+> ```sql
+> SELECT automat_id, hinweis
+> FROM standort
+> WHERE hinweis IS NULL;
+> ```
 
 ### Querverweise
 - [Kapitel 10: Rechenoperatoren und Aliase](10_Rechenoperatoren_in_SQL_und_Aliase.md)

@@ -21,9 +21,10 @@ Kardinalitäten im Chen-Modell:
 - 1:n bedeutet: Ein Datensatz von A kann vielen Datensätzen von B zugeordnet sein, B aber nur einem A.
 - m:n bedeutet: Viele Datensätze von A können vielen Datensätzen von B zugeordnet sein.
 
-Beispiel (Warenautomat):
-- `standort` zu `automat` ist 1:n.
-- `automat` zu `mitarbeiter` ist m:n.
+> [!NOTE]
+> Beispiel (Warenautomat):
+> - `standort` zu `automat` ist 1:n.
+> - `automat` zu `mitarbeiter` ist m:n.
 
 ```mermaid
 flowchart LR

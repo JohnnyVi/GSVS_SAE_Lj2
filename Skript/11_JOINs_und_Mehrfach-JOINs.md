@@ -22,37 +22,41 @@ Wichtige JOIN-Arten:
 5. `SELF JOIN`:
     Eine Tabelle wird mit sich selbst verknüpft (z. B. Hierarchien oder Vergleiche innerhalb derselben Tabelle).
 
-Beispiel `INNER JOIN`:
-```sql
-SELECT a.seriennummer, s.bezeichnung
-FROM automat a
-INNER JOIN standort s ON a.standort_id = s.standort_id;
-```
+> [!NOTE]
+> Beispiel `INNER JOIN`:
+> ```sql
+> SELECT a.seriennummer, s.bezeichnung
+> FROM automat a
+> INNER JOIN standort s ON a.standort_id = s.standort_id;
+> ```
 
-Beispiel `LEFT JOIN`:
-```sql
-SELECT l.name AS lieferant, p.name AS produkt
-FROM lieferant l
-LEFT JOIN produkt p ON p.lieferant_id = l.lieferant_id;
-```
+> [!NOTE]
+> Beispiel `LEFT JOIN`:
+> ```sql
+> SELECT l.name AS lieferant, p.name AS produkt
+> FROM lieferant l
+> LEFT JOIN produkt p ON p.lieferant_id = l.lieferant_id;
+> ```
 
-Beispiel `FULL OUTER JOIN`:
-```sql
-SELECT l.name AS lieferant, p.name AS produkt
-FROM lieferant l
-FULL OUTER JOIN produkt p ON p.lieferant_id = l.lieferant_id;
-```
+> [!NOTE]
+> Beispiel `FULL OUTER JOIN`:
+> ```sql
+> SELECT l.name AS lieferant, p.name AS produkt
+> FROM lieferant l
+> FULL OUTER JOIN produkt p ON p.lieferant_id = l.lieferant_id;
+> ```
 
-Beispiel `SELF JOIN` (Automaten im gleichen Standort):
-```sql
-SELECT a1.seriennummer AS automat_1,
-             a2.seriennummer AS automat_2,
-             a1.standort_id
-FROM automat a1
-JOIN automat a2
-    ON a1.standort_id = a2.standort_id
- AND a1.automat_id < a2.automat_id;
-```
+> [!NOTE]
+> Beispiel `SELF JOIN` (Automaten im gleichen Standort):
+> ```sql
+> SELECT a1.seriennummer AS automat_1,
+>              a2.seriennummer AS automat_2,
+>              a1.standort_id
+> FROM automat a1
+> JOIN automat a2
+>     ON a1.standort_id = a2.standort_id
+>  AND a1.automat_id < a2.automat_id;
+> ```
 
 ### 11.2 JOIN über Fremdschlüssel
 JOINs folgen häufig genau den im Modell definierten Fremdschlüsseln.
@@ -70,17 +74,18 @@ Vorgehensweise bei Mehrfach-JOINs:
 3. Für jede neue Tabelle die FK-Beziehung in `ON` klar angeben.
 4. Aliase verwenden, um Spalten eindeutig und lesbar zu halten.
 
-Beispiel:
-```sql
-SELECT a.seriennummer,
-         s.bezeichnung AS standort,
-         p.name AS produkt,
-         i.aktueller_bestand
-FROM inventar i
-JOIN automat a ON i.automat_id = a.automat_id
-JOIN standort s ON a.standort_id = s.standort_id
-JOIN produkt p ON i.produkt_id = p.produkt_id;
-```
+> [!NOTE]
+> Beispiel:
+> ```sql
+> SELECT a.seriennummer,
+>          s.bezeichnung AS standort,
+>          p.name AS produkt,
+>          i.aktueller_bestand
+> FROM inventar i
+> JOIN automat a ON i.automat_id = a.automat_id
+> JOIN standort s ON a.standort_id = s.standort_id
+> JOIN produkt p ON i.produkt_id = p.produkt_id;
+> ```
 
 ### 11.4 Häufige JOIN-Fehler
 1. Fehlende `ON`-Bedingung:

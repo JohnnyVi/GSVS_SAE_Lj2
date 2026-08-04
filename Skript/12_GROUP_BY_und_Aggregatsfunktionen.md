@@ -17,17 +17,18 @@ Wichtige Funktionen:
 4. `MIN(spalte)`: Kleinster Wert.
 5. `MAX(spalte)`: Größter Wert.
 
-Beispiele:
-```sql
-SELECT COUNT(*) AS anzahl_produkte
-FROM produkt;
-
-SELECT SUM(aktueller_bestand) AS gesamtbestand
-FROM inventar;
-
-SELECT AVG(preis_eur) AS durchschnittspreis
-FROM produkt;
-```
+> [!NOTE]
+> Beispiele:
+> ```sql
+> SELECT COUNT(*) AS anzahl_produkte
+> FROM produkt;
+>
+> SELECT SUM(aktueller_bestand) AS gesamtbestand
+> FROM inventar;
+>
+> SELECT AVG(preis_eur) AS durchschnittspreis
+> FROM produkt;
+> ```
 
 ### 12.2 GROUP BY
 `GROUP BY` bildet Gruppen, auf die Aggregatsfunktionen angewendet werden. Statt eines Gesamtergebnisses erhält man pro Gruppe ein Teilergebnis.
@@ -39,12 +40,13 @@ FROM tabelle
 GROUP BY gruppenspalte;
 ```
 
-Beispiel:
-```sql
-SELECT kategorie, COUNT(*) AS anzahl
-FROM produkt
-GROUP BY kategorie;
-```
+> [!NOTE]
+> Beispiel:
+> ```sql
+> SELECT kategorie, COUNT(*) AS anzahl
+> FROM produkt
+> GROUP BY kategorie;
+> ```
 
 Wichtige Regel:
 - Alle Spalten in `SELECT`, die nicht aggregiert sind, müssen in `GROUP BY` stehen.
@@ -53,26 +55,28 @@ Wichtige Regel:
 ### 12.3 GROUP BY mit mehreren Spalten
 Gruppierung kann über mehrere Spalten erfolgen.
 
-Beispiel:
-```sql
-SELECT automat_id, produkt_id, SUM(aktueller_bestand) AS bestand_summe
-FROM inventar
-GROUP BY automat_id, produkt_id;
-```
+> [!NOTE]
+> Beispiel:
+> ```sql
+> SELECT automat_id, produkt_id, SUM(aktueller_bestand) AS bestand_summe
+> FROM inventar
+> GROUP BY automat_id, produkt_id;
+> ```
 
 Hier entsteht je Kombination aus `automat_id` und `produkt_id` genau eine Gruppe.
 
 ### 12.4 GROUP_CONCAT
 Mit `GROUP_CONCAT` können Werte je Gruppe als Text zusammengefasst werden.
 
-Beispiel:
-```sql
-SELECT l.name AS lieferant,
-         GROUP_CONCAT(p.name ORDER BY p.name SEPARATOR ', ') AS produkte
-FROM lieferant l
-JOIN produkt p ON p.lieferant_id = l.lieferant_id
-GROUP BY l.name;
-```
+> [!NOTE]
+> Beispiel:
+> ```sql
+> SELECT l.name AS lieferant,
+>          GROUP_CONCAT(p.name ORDER BY p.name SEPARATOR ', ') AS produkte
+> FROM lieferant l
+> JOIN produkt p ON p.lieferant_id = l.lieferant_id
+> GROUP BY l.name;
+> ```
 
 ### 12.5 Typische Fehler bei Aggregation und GROUP BY
 1. Nicht gruppierte Spalte in `SELECT`:
@@ -84,16 +88,17 @@ GROUP BY l.name;
 4. Fehlende Sortierung:
     Ergebnisse ohne `ORDER BY` sind oft schwer vergleichbar.
 
-Beispiel für saubere Kombination:
-```sql
-SELECT kategorie,
-         COUNT(*) AS anzahl,
-         ROUND(AVG(preis_eur), 2) AS avg_preis
-FROM produkt
-WHERE aktiv = TRUE
-GROUP BY kategorie
-ORDER BY anzahl DESC;
-```
+> [!NOTE]
+> Beispiel für saubere Kombination:
+> ```sql
+> SELECT kategorie,
+>          COUNT(*) AS anzahl,
+>          ROUND(AVG(preis_eur), 2) AS avg_preis
+> FROM produkt
+> WHERE aktiv = TRUE
+> GROUP BY kategorie
+> ORDER BY anzahl DESC;
+> ```
 
 ### Querverweise
 - [Kapitel 10: Rechenoperatoren und Aliase](10_Rechenoperatoren_in_SQL_und_Aliase.md)

@@ -32,13 +32,14 @@ GROUP BY gruppenspalte
 HAVING AGGREGAT(spalte) bedingung;
 ```
 
-Beispiel:
-```sql
-SELECT kategorie, COUNT(*) AS anzahl
-FROM produkt
-GROUP BY kategorie
-HAVING COUNT(*) > 5;
-```
+> [!NOTE]
+> Beispiel:
+> ```sql
+> SELECT kategorie, COUNT(*) AS anzahl
+> FROM produkt
+> GROUP BY kategorie
+> HAVING COUNT(*) > 5;
+> ```
 
 ### 13.2 HAVING und WHERE
 `WHERE` filtert vor dem Gruppieren, `HAVING` danach.
@@ -47,32 +48,34 @@ Merksatz:
 - `WHERE` entscheidet, welche Einzelzeilen in die Gruppierung eingehen.
 - `HAVING` entscheidet, welche Gruppen nach der Aggregation übrig bleiben.
 
-Beispiel mit beiden Ebenen:
-```sql
-SELECT kategorie,
-         COUNT(*) AS anzahl,
-         ROUND(AVG(preis_eur), 2) AS avg_preis
-FROM produkt
-WHERE aktiv = TRUE
-GROUP BY kategorie
-HAVING COUNT(*) >= 3
-    AND AVG(preis_eur) > 1.50;
-```
+> [!NOTE]
+> Beispiel mit beiden Ebenen:
+> ```sql
+> SELECT kategorie,
+>          COUNT(*) AS anzahl,
+>          ROUND(AVG(preis_eur), 2) AS avg_preis
+> FROM produkt
+> WHERE aktiv = TRUE
+> GROUP BY kategorie
+> HAVING COUNT(*) >= 3
+>     AND AVG(preis_eur) > 1.50;
+> ```
 
 ### 13.3 Mehrere Bedingungen in HAVING
 In `HAVING` können Bedingungen mit `AND`, `OR` und Klammern kombiniert werden, genau wie in `WHERE`.
 
-Beispiel:
-```sql
-SELECT l.name AS lieferant,
-         COUNT(*) AS produktanzahl,
-         MAX(p.preis_eur) AS teuerstes_produkt
-FROM lieferant l
-JOIN produkt p ON p.lieferant_id = l.lieferant_id
-GROUP BY l.name
-HAVING COUNT(*) >= 5
-    AND MAX(p.preis_eur) > 2.00;
-```
+> [!NOTE]
+> Beispiel:
+> ```sql
+> SELECT l.name AS lieferant,
+>          COUNT(*) AS produktanzahl,
+>          MAX(p.preis_eur) AS teuerstes_produkt
+> FROM lieferant l
+> JOIN produkt p ON p.lieferant_id = l.lieferant_id
+> GROUP BY l.name
+> HAVING COUNT(*) >= 5
+>     AND MAX(p.preis_eur) > 2.00;
+> ```
 
 ### 13.4 Typische Fehler bei HAVING
 1. Aggregatbedingung in `WHERE` statt `HAVING`:
@@ -84,16 +87,17 @@ HAVING COUNT(*) >= 5
 4. Unklare Operatorlogik:
     Bei gemischtem `AND`/`OR` Klammern setzen.
 
-Beispiel für korrekte Aufteilung:
-```sql
-SELECT l.name,
-         COUNT(*) AS anzahl
-FROM lieferant l
-JOIN produkt p ON p.lieferant_id = l.lieferant_id
-WHERE p.aktiv = TRUE
-GROUP BY l.name
-HAVING COUNT(*) > 3;
-```
+> [!NOTE]
+> Beispiel für korrekte Aufteilung:
+> ```sql
+> SELECT l.name,
+>          COUNT(*) AS anzahl
+> FROM lieferant l
+> JOIN produkt p ON p.lieferant_id = l.lieferant_id
+> WHERE p.aktiv = TRUE
+> GROUP BY l.name
+> HAVING COUNT(*) > 3;
+> ```
 
 ### Querverweise
 (09_SQL_SELECT-Grundlagen.md)

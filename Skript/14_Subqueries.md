@@ -15,40 +15,43 @@ Häufige Formen:
 2. Mengen-Subquery: Liefert mehrere Werte, z. B. für `IN`.
 3. Korrelierte Subquery: Bezieht sich auf Werte der äußeren Abfrage.
 
-Beispiel (skalar):
-```sql
-SELECT name, preis_eur
-FROM produkt
-WHERE preis_eur > (SELECT AVG(preis_eur) FROM produkt);
-```
+> [!NOTE]
+> Beispiel (skalar):
+> ```sql
+> SELECT name, preis_eur
+> FROM produkt
+> WHERE preis_eur > (SELECT AVG(preis_eur) FROM produkt);
+> ```
 
 ### 14.2 IN mit Subquery
 Mit `IN` kann man prüfen, ob ein Wert in der Ergebnismenge einer Unterabfrage enthalten ist.
 
-Beispiel:
-```sql
-SELECT seriennummer, modell
-FROM automat
-WHERE standort_id IN (
-    SELECT standort_id
-    FROM standort
-    WHERE ort = 'Villingen-Schwenningen'
-);
-```
+> [!NOTE]
+> Beispiel:
+> ```sql
+> SELECT seriennummer, modell
+> FROM automat
+> WHERE standort_id IN (
+>     SELECT standort_id
+>     FROM standort
+>     WHERE ort = 'Villingen-Schwenningen'
+> );
+> ```
 
 ### 14.3 EXISTS statt IN
 `EXISTS` prüft, ob die Unterabfrage mindestens eine Zeile liefert. Das ist besonders nützlich bei korrelierten Abfragen.
 
-Beispiel:
-```sql
-SELECT l.lieferant_id, l.name
-FROM lieferant l
-WHERE EXISTS (
-    SELECT 1
-    FROM produkt p
-    WHERE p.lieferant_id = l.lieferant_id
-);
-```
+> [!NOTE]
+> Beispiel:
+> ```sql
+> SELECT l.lieferant_id, l.name
+> FROM lieferant l
+> WHERE EXISTS (
+>     SELECT 1
+>     FROM produkt p
+>     WHERE p.lieferant_id = l.lieferant_id
+> );
+> ```
 
 Unterschied `IN` vs `EXISTS` (vereinfacht):
 - `IN`: Prüft Mitgliedschaft in einer Werteliste.
@@ -57,16 +60,17 @@ Unterschied `IN` vs `EXISTS` (vereinfacht):
 ### 14.4 Korrelierte Subquery
 Eine korrelierte Subquery bezieht sich auf die äußere Abfrage.
 
-Beispiel:
-```sql
-SELECT p1.name, p1.kategorie, p1.preis_eur
-FROM produkt p1
-WHERE p1.preis_eur > (
-    SELECT AVG(p2.preis_eur)
-    FROM produkt p2
-    WHERE p2.kategorie = p1.kategorie
-);
-```
+> [!NOTE]
+> Beispiel:
+> ```sql
+> SELECT p1.name, p1.kategorie, p1.preis_eur
+> FROM produkt p1
+> WHERE p1.preis_eur > (
+>     SELECT AVG(p2.preis_eur)
+>     FROM produkt p2
+>     WHERE p2.kategorie = p1.kategorie
+> );
+> ```
 
 Die innere Abfrage wird hier je Zeile von `p1` logisch neu bewertet.
 
@@ -80,16 +84,17 @@ Die innere Abfrage wird hier je Zeile von `p1` logisch neu bewertet.
 4. Fehlende Korrelation:
    Bei korrelierten Aufgaben wird die innere Abfrage nicht richtig mit der äußeren verknüpft.
 
-Beispielproblem:
-```sql
--- problematisch, falls Subquery NULL enthält
-SELECT name
-FROM produkt
-WHERE lieferant_id NOT IN (
-    SELECT lieferant_id
-    FROM lieferant
-);
-```
+> [!IMPORTANT]
+> Beispielproblem:
+> ```sql
+> -- problematisch, falls Subquery NULL enthält
+> SELECT name
+> FROM produkt
+> WHERE lieferant_id NOT IN (
+>     SELECT lieferant_id
+>     FROM lieferant
+> );
+> ```
 
 Robustere Variante:
 ```sql

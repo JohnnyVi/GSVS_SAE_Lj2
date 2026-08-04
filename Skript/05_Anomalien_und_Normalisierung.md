@@ -34,24 +34,33 @@ Ziel der Normalisierung:
 - Änderungen leichter und sicherer machen
 
 ### 5.3 Die Grundidee von 1NF, 2NF und 3NF
-1. Erste Normalform (1NF):
-    Alle Attribute enthalten atomare (unteilbare) Werte, keine Listen in einer Zelle.
-    Beispielproblem: `produkt_tags = 'vegan, bio, regional'` in einer Spalte.
+> [!IMPORTANT]
+> Erste Normalform (1NF):
+> Alle Attribute enthalten atomare (unteilbare) Werte, keine Listen in einer Zelle.
+> Beispielproblem: `produkt_tags = 'vegan, bio, regional'` in einer Spalte.
 
-2. Zweite Normalform (2NF):
-    Alle Nichtschlüsselattribute hängen vollständig vom gesamten Primärschlüssel ab.
-    Relevant vor allem bei zusammengesetzten Schlüsseln.
+> [!NOTE]
+> Zweite Normalform (2NF):
+> Alle Nichtschlüsselattribute hängen vollständig vom gesamten Primärschlüssel ab.
+> Relevant vor allem bei zusammengesetzten Schlüsseln.
 
-3. Dritte Normalform (3NF):
-    Keine transitiven Abhängigkeiten zwischen Nichtschlüsselattributen.
-    Nichtschlüsselattribute sollen nur vom Primärschlüssel abhängen.
+> [!NOTE]
+> Dritte Normalform (3NF):
+> Keine transitiven Abhängigkeiten zwischen Nichtschlüsselattributen.
+> Nichtschlüsselattribute sollen nur vom Primärschlüssel abhängen.
 
 Einfacher Merksatz:
 - 1NF: keine Listenwerte
 - 2NF: keine Teilabhängigkeiten
 - 3NF: keine indirekten Abhängigkeiten
 
-### 5.4 Beispiel aus dem Warenautomaten-Kontext
+## 5.4 Transformationen
+- 1NF: In mehrere Spalten aufspalten oder Datensatz kopieren.
+- 2NF: Abhängigkeiten überprüfen und Teilabhängigkeiten in Tabellen auslagern.
+- 3NF: Wie 2NF.
+
+
+### 5.5 Beispiel aus dem Warenautomaten-Kontext
 Ohne Normalisierung könnte eine Tabelle alles enthalten:
 `produkt_name, lieferant_name, lieferant_email, standort_ort, ...`
 

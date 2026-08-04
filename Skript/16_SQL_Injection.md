@@ -44,14 +44,15 @@ WHERE name = ?
   AND passwort_hash = ?;
 ```
 
-Beispiel (Java mit Prepared Statement):
-```java
-String sql = "SELECT benutzer_id, rolle FROM benutzer WHERE name = ? AND passwort_hash = ?";
-PreparedStatement ps = conn.prepareStatement(sql);
-ps.setString(1, eingabeName);
-ps.setString(2, passwortHash);
-ResultSet rs = ps.executeQuery();
-```
+> [!NOTE]
+> Beispiel (Java mit Prepared Statement):
+> ```java
+> String sql = "SELECT benutzer_id, rolle FROM benutzer WHERE name = ? AND passwort_hash = ?";
+> PreparedStatement ps = conn.prepareStatement(sql);
+> ps.setString(1, eingabeName);
+> ps.setString(2, passwortHash);
+> ResultSet rs = ps.executeQuery();
+> ```
 
 Wichtig:
 - Auch bei Prepared Statements sollten Eingaben  validiert werden.

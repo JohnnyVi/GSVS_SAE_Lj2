@@ -39,12 +39,13 @@ Sicheres Vorgehen bei UPDATE:
 2. Erst danach das `UPDATE` mit derselben `WHERE`-Klausel ausführen.
 3. Ergebnis kontrollieren (z. B. Anzahl geänderter Zeilen).
 
-Beispiel:
-```sql
--- Schritt 1: prüfen
-SELECT automat_id, seriennummer, status
-FROM automat
-WHERE seriennummer = 'VM-SW-002';
+> [!NOTE]
+> Beispiel:
+> ```sql
+> -- Schritt 1: prüfen
+> SELECT automat_id, seriennummer, status
+> FROM automat
+> WHERE seriennummer = 'VM-SW-002';
 
 -- Schritt 2: ändern
 UPDATE automat
@@ -60,11 +61,12 @@ Typische Einsätze:
 - Datentyp anpassen
 - Constraint hinzufügen oder entfernen
 
-Beispiele:
-```sql
--- neue optionale Spalte
-ALTER TABLE standort
-ADD COLUMN hinweis VARCHAR(255);
+> [!NOTE]
+> Beispiele:
+> ```sql
+> -- neue optionale Spalte
+> ALTER TABLE standort
+> ADD COLUMN hinweis VARCHAR(255);
 
 -- neue Pflichtregel ergänzen
 ALTER TABLE produkt
@@ -89,12 +91,13 @@ Sicheres Vorgehen bei DELETE:
 2. Abhängigkeiten über Fremdschlüssel beachten.
 3. Erst dann löschen.
 
-Beispiel:
-```sql
--- Schritt 1: prüfen
-SELECT lieferant_id, name, aktiv
-FROM lieferant
-WHERE aktiv = FALSE;
+> [!NOTE]
+> Beispiel:
+> ```sql
+> -- Schritt 1: prüfen
+> SELECT lieferant_id, name, aktiv
+> FROM lieferant
+> WHERE aktiv = FALSE;
 
 -- Schritt 2: löschen
 DELETE FROM lieferant

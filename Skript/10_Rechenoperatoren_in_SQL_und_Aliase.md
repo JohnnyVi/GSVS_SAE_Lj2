@@ -16,39 +16,42 @@ Wichtige Rechenoperatoren:
 - `*` Multiplikation
 - `/` Division
 
-Beispiele:
-```sql
-SELECT name, preis_eur, preis_eur * 3 AS dreifacher_wert
-FROM produkt;
-
-SELECT fachnummer, aktueller_bestand, aktueller_bestand - 2 AS restbestand
-FROM inventar;
-```
+> [!NOTE]
+> Beispiele:
+> ```sql
+> SELECT name, preis_eur, preis_eur * 3 AS dreifacher_wert
+> FROM produkt;
+>
+> SELECT fachnummer, aktueller_bestand, aktueller_bestand - 2 AS restbestand
+> FROM inventar;
+> ```
 
 Operator-Reihenfolge:
 1. Klammern `()`
 2. Multiplikation/Division `*`, `/`
 3. Addition/Subtraktion `+`, `-`
 
-Beispiel:
-- `preis_eur * 1.19 - 0.50` ist nicht dasselbe wie `preis_eur * (1.19 - 0.50)`.
-- Bei gemischten Rechenwegen immer Klammern setzen.
+> [!NOTE]
+> Beispiel:
+> - `preis_eur * 1.19 - 0.50` ist nicht dasselbe wie `preis_eur * (1.19 - 0.50)`.
+> - Bei gemischten Rechenwegen immer Klammern setzen.
 
 ### 10.2 Aliase
 Aliase geben Spalten oder Tabellen lesbarere Namen. Besonders bei Berechnungen machen sie Ergebnisse verständlich.
 
-Beispiele:
-```sql
-SELECT name,
-       preis_eur,
-       preis_eur * 0.90 AS rabattpreis
-FROM produkt;
-
-SELECT a.seriennummer,
-       i.aktueller_bestand AS bestand
-FROM inventar i
-JOIN automat a ON a.automat_id = i.automat_id;
-```
+> [!NOTE]
+> Beispiele:
+> ```sql
+> SELECT name,
+>        preis_eur,
+>        preis_eur * 0.90 AS rabattpreis
+> FROM produkt;
+>
+> SELECT a.seriennummer,
+>        i.aktueller_bestand AS bestand
+> FROM inventar i
+> JOIN automat a ON a.automat_id = i.automat_id;
+> ```
 
 ### 10.3 Ausdrücke mit Berechnung
 Berechnungen sind besonders nützlich bei Mengen, Bestandswerten oder Rabatten.
@@ -58,41 +61,44 @@ Typische Muster:
 2. Gesamtwert = Menge * Einzelpreis
 3. Differenzrechnung (Soll-Ist)
 
-Beispiel Gesamtwert je Fach:
-```sql
-SELECT i.automat_id,
-       i.fachnummer,
-       i.aktueller_bestand,
-       p.preis_eur,
-       i.aktueller_bestand * p.preis_eur AS fachwert_eur
-FROM inventar i
-JOIN produkt p ON p.produkt_id = i.produkt_id;
-```
+> [!NOTE]
+> Beispiel Gesamtwert je Fach:
+> ```sql
+> SELECT i.automat_id,
+>        i.fachnummer,
+>        i.aktueller_bestand,
+>        p.preis_eur,
+>        i.aktueller_bestand * p.preis_eur AS fachwert_eur
+> FROM inventar i
+> JOIN produkt p ON p.produkt_id = i.produkt_id;
+> ```
 
 Rundung in SQL:
 - `ROUND(x, 2)` rundet auf zwei Nachkommastellen.
 - `CEIL(x)` rundet auf die nächste ganze Zahl auf.
 - `FLOOR(x)` rundet auf die nächste ganze Zahl ab.
 
-Beispiel:
-```sql
-SELECT name,
-       preis_eur,
-       ROUND(preis_eur * 1.19, 2) AS bruttopreis
-FROM produkt;
-```
+> [!NOTE]
+> Beispiel:
+> ```sql
+> SELECT name,
+>        preis_eur,
+>        ROUND(preis_eur * 1.19, 2) AS bruttopreis
+> FROM produkt;
+> ```
 
 Umgang mit `NULL` bei Berechnungen:
 - Jede Rechnung mit `NULL` ergibt meist `NULL`.
 - Mit `COALESCE` kann ein Ersatzwert gesetzt werden.
 
-Beispiel:
-```sql
-SELECT produkt_id,
-       COALESCE(rabatt_prozent, 0) AS rabatt,
-       preis_eur * (1 - COALESCE(rabatt_prozent, 0) / 100) AS preis_nach_rabatt
-FROM produkt;
-```
+> [!NOTE]
+> Beispiel:
+> ```sql
+> SELECT produkt_id,
+>        COALESCE(rabatt_prozent, 0) AS rabatt,
+>        preis_eur * (1 - COALESCE(rabatt_prozent, 0) / 100) AS preis_nach_rabatt
+> FROM produkt;
+> ```
 
 ### 10.4 Typische Rechenfehler
 1. Fehlende Klammern bei gemischten Operationen.

@@ -9,9 +9,10 @@
 Ein Primärschlüssel identifiziert jede Zeile eindeutig. Das bedeutet: Mit diesem einen Wert kann genau ein Datensatz gefunden werden, ohne Verwechslung mit einem anderen Datensatz.
 Primärschlüssel sind somit ein wichtiger Bestandteil der Modellierung.
 
-Beispiel:
-- In `automat` ist `automat_id = 17` genau ein bestimmter Automat.
-- Wenn in einer Abfrage nach `automat_id = 17` gefiltert wird, darf höchstens eine Zeile zurückkommen.
+> [!NOTE]
+> Beispiel:
+> - In `automat` ist `automat_id = 17` genau ein bestimmter Automat.
+> - Wenn in einer Abfrage nach `automat_id = 17` gefiltert wird, darf höchstens eine Zeile zurückkommen.
 
 Typische Primärschlüssel in der Warenautomat-Datenbank sind `standort_id`, `mitarbeiter_id`, `produkt_id` und `automat_id`.
 
@@ -22,10 +23,11 @@ Man unterscheidet zwischen natürlichen Schlüsseln und künstlichen Primärschl
 ### 3.2 Fremdschlüssel
 Ein Fremdschlüssel ist ein Attribut, das auf den Primärschlüssel einer anderen Tabelle verweist. Dadurch werden Beziehungen technisch abgesichert und die Daten bleiben logisch verbunden.
 
-Konkretes Beispiel:
-- Tabelle `lieferant`: `lieferant_id` ist Primärschlüssel.
-- Tabelle `produkt`: `lieferant_id` ist Fremdschlüssel.
-- Bedeutung: Jedes Produkt kann einem vorhandenen Lieferanten zugeordnet sein.
+> [!NOTE]
+> Konkretes Beispiel:
+> - Tabelle `lieferant`: `lieferant_id` ist Primärschlüssel.
+> - Tabelle `produkt`: `lieferant_id` ist Fremdschlüssel.
+> - Bedeutung: Jedes Produkt kann einem vorhandenen Lieferanten zugeordnet sein.
 
 Vereinfachte SQL-Definition:
 ```sql
@@ -55,15 +57,17 @@ Die Relationenschreibweise beschreibt Tabellen formal und kompakt. Eine Relation
 
 In dieser Schreibweise werden Primärschlüssel unterstrichen. Fremdschlüsseln wird zusätzlich ein Pfeil nach oben vorangestellt.
 
-Beispiele:
-- STANDORT(<u>standort_id</u>, bezeichnung, strasse, hausnummer, plz, ort, land)
-- AUTOMAT(<u>automat_id</u>, seriennummer, modell, status, ↑standort_id)
+> [!NOTE]
+> Beispiele:
+> - STANDORT(<u>standort_id</u>, bezeichnung, strasse, hausnummer, plz, ort, land)
+> - AUTOMAT(<u>automat_id</u>, seriennummer, modell, status, ↑standort_id)
 
 Neben dieser Kurzform gibt es auch eine Langform der Relationenschreibweise. Dabei werden zusätzlich Datentypen und bei Fremdschlüsseln auch die referenzierte Tabelle angegeben.
 
-Beispiel in Langform:
-- STANDORT(<u>standort_id</u>: BIGINT, bezeichnung: VARCHAR(100), strasse: VARCHAR(100), hausnummer: VARCHAR(10), plz: VARCHAR(10), ort: VARCHAR(100), land: VARCHAR(50))
-- AUTOMAT(<u>automat_id</u>: BIGINT, seriennummer: VARCHAR(50), modell: VARCHAR(100), status: VARCHAR(20), ↑standort_id: BIGINT -> STANDORT.standort_id)
+> [!NOTE]
+> Beispiel in Langform:
+> - STANDORT(<u>standort_id</u>: BIGINT, bezeichnung: VARCHAR(100), strasse: VARCHAR(100), hausnummer: VARCHAR(10), plz: VARCHAR(10), ort: VARCHAR(100), land: VARCHAR(50))
+> - AUTOMAT(<u>automat_id</u>: BIGINT, seriennummer: VARCHAR(50), modell: VARCHAR(100), status: VARCHAR(20), ↑standort_id: BIGINT -> STANDORT.standort_id)
 
 Die Langform ist besonders nützlich, wenn ein Modell genauer dokumentiert werden soll. Man erkennt damit nicht nur die Attribute, sondern auch deren Datentypen sowie die Beziehungen über Fremdschlüssel.
 
@@ -80,10 +84,11 @@ Was heißt "konsistent"?
 - Alle zusammengehörigen Daten passen logisch zueinander.
 - Es gibt keine ungültigen Verweise oder unplausiblen Werte.
 
-Beispiele für konsistente Daten:
-- Ein Produkt verweist nur auf einen vorhandenen Lieferanten.
-- Ein Bestand ist nicht negativ, wenn die Regel `bestand >= 0` gilt.
-- Eine Seriennummer, die eindeutig sein muss, kommt nicht doppelt vor.
+> [!NOTE]
+> Beispiele für konsistente Daten:
+> - Ein Produkt verweist nur auf einen vorhandenen Lieferanten.
+> - Ein Bestand ist nicht negativ, wenn die Regel `bestand >= 0` gilt.
+> - Eine Seriennummer, die eindeutig sein muss, kommt nicht doppelt vor.
 
 Wichtige Integritätsarten:
 1. Entitätsintegrität:

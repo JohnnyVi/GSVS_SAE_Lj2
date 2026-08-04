@@ -12,9 +12,7 @@ Bevor wir Tabellen anlegen, ist ein kurzer Überblick über die wichtigsten Best
 - `DQL` (Data Query Language): Liest Daten aus, vor allem mit `SELECT`.
 - `DCL` (Data Control Language): Steuert Zugriffsrechte, z. B. `GRANT`, `REVOKE`.
 
-`CREATE TABLE` gehört damit klar zur `DDL`, weil hier die Tabellenstruktur festgelegt wird.
-
-Mit den passenden Datentypen und Regeln steht jetzt die technische Umsetzung der Tabellen an. `CREATE TABLE` übersetzt das Datenmodell in eine konkrete Datenbankstruktur.
+`CREATE TABLE` gehört damit  zur `DDL`, weil hier die Tabellenstruktur festgelegt wird.
 
 ### 7.1 Tabellen anlegen
 Mit `CREATE TABLE` wird ein Modell technisch in eine echte Datenbanktabelle umgesetzt. Dabei werden Spalten, Datentypen und Constraints definiert.
@@ -28,6 +26,27 @@ Die relationale Schreibweise ist also der Zwischenschritt zwischen ER-Modell und
 
 Typischer Übergang:
 - ER-Modell: Entität `PRODUKT`, Beziehung zu `LIEFERANT`
+
+```mermaid
+erDiagram
+    LIEFERANT ||--|{ PRODUKT : liefert
+
+    LIEFERANT {
+        BIGINT lieferant_id PK
+        VARCHAR name
+        VARCHAR email
+        BOOLEAN aktiv
+    }
+
+    PRODUKT {
+        BIGINT produkt_id PK
+        VARCHAR name
+        NUMERIC preis_eur
+        BIGINT lieferant_id FK
+        BOOLEAN aktiv
+    }
+```
+
 - Relationale Schreibweise: `PRODUKT(produkt_id, name, preis_eur, lieferant_id, aktiv)`
 - SQL-Umsetzung: `CREATE TABLE produkt (...)` mit PK/FK und Constraints
 
@@ -68,13 +87,14 @@ CREATE TABLE produkt (
 );
 ```
 
-Kurzerklärungen zum Beispiel:
-- `produkt_id`: Primärschlüssel (PK), eindeutige Identifikation.
-- `lieferant_id`: Fremdschlüssel (FK) auf `lieferant`.
-- `name`, `preis_eur`, `kategorie`, `aktiv`, `lieferant_id`: Pflichtfelder (`NOT NULL`).
-- `barcode`: Darf nicht doppelt vorkommen (`UNIQUE`).
-- `preis_eur > 0`: Negative oder null Preise werden verhindert (`CHECK`).
-- `kategorie` und `aktiv`: Sinnvolle Startwerte über `DEFAULT`.
+> [!NOTE]
+> Kurzerklärungen zum Beispiel:
+> - `produkt_id`: Primärschlüssel (PK), eindeutige Identifikation.
+> - `lieferant_id`: Fremdschlüssel (FK) auf `lieferant`.
+> - `name`, `preis_eur`, `kategorie`, `aktiv`, `lieferant_id`: Pflichtfelder (`NOT NULL`).
+> - `barcode`: Darf nicht doppelt vorkommen (`UNIQUE`).
+> - `preis_eur > 0`: Negative oder null Preise werden verhindert (`CHECK`).
+> - `kategorie` und `aktiv`: Sinnvolle Startwerte über `DEFAULT`.
 
 ### Querverweise
 - [Kapitel 6: SQL-Felddatentypen](06_SQL-Felddatentypen.md)

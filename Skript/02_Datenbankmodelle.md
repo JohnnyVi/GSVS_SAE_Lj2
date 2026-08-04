@@ -21,9 +21,10 @@ Erst danach werden die Tabellen technisch mit `CREATE TABLE` umgesetzt.
 ### 2.2 Abstraktion
 Beim Modellieren wird nur der relevante Teil der Realität übernommen. Das nennt man Abstraktion: Der Datenbankinhalt ist immer nur ein Ausschnitt der Wirklichkeit.
 
-Beispiel:
-- Für einen Automaten sind `seriennummer`, `modell`, `status` und `standort_id` wichtig.
-- Unwichtige Details (z. B. Farbe, Geruch, Kratzer oder interne Kabelverlegung) werden weggelassen.
+> [!NOTE]
+> Beispiel:
+> - Für einen Automaten sind `seriennummer`, `modell`, `status` und `standort_id` wichtig.
+> - Unwichtige Details (z. B. Farbe, Geruch, Kratzer oder interne Kabelverlegung) werden weggelassen.
 
 Gute Abstraktion bedeutet: so einfach wie möglich, aber so genau wie nötig.
 

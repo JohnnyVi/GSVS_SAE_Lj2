@@ -33,13 +33,14 @@ Hier müssen dann alle Spalten  in der richtigen Reihenfolge angegeben werden, a
 ### 8.2 Mehrere Datensätze auf einmal
 Mehrere Zeilen können mit einem einzigen `INSERT` eingefügt werden. Das ist übersichtlicher und oft schneller als viele einzelne Statements.
 
-Beispiel:
-```sql
-INSERT INTO standort (bezeichnung, strasse, hausnummer, plz, ort, land)
-VALUES
-('Campus Mitte', 'Hauptstraße', '1', '78000', 'Villingen-Schwenningen', 'Deutschland'),
-('Bahnhof Süd', 'Bahnhofsallee', '8', '78050', 'Villingen-Schwenningen', 'Deutschland');
-```
+> [!NOTE]
+> Beispiel:
+> ```sql
+> INSERT INTO standort (bezeichnung, strasse, hausnummer, plz, ort, land)
+> VALUES
+> ('Campus Mitte', 'Hauptstraße', '1', '78000', 'Villingen-Schwenningen', 'Deutschland'),
+> ('Bahnhof Süd', 'Bahnhofsallee', '8', '78050', 'Villingen-Schwenningen', 'Deutschland');
+> ```
 
 ### 8.3 Häufige Fehlerquellen bei INSERT
 Beim Einfügen treten besonders oft folgende Fehler auf:
@@ -57,16 +58,17 @@ Beim Einfügen treten besonders oft folgende Fehler auf:
 6. Datentyp-Konflikt:
     Ein Text wird in eine Zahlenspalte geschrieben oder ein Datum hat falsches Format.
 
-Mini-Beispiele:
-```sql
--- FK-Fehler: lieferant_id 999 existiert nicht
-INSERT INTO produkt (name, preis_eur, lieferant_id)
-VALUES ('Riegel XL', 1.99, 999);
-
--- CHECK-Fehler: Preis darf nicht negativ sein
-INSERT INTO produkt (name, preis_eur, lieferant_id)
-VALUES ('Riegel Minus', -1.00, 1);
-```
+> [!IMPORTANT]
+> Mini-Beispiele:
+> ```sql
+> -- FK-Fehler: lieferant_id 999 existiert nicht
+> INSERT INTO produkt (name, preis_eur, lieferant_id)
+> VALUES ('Riegel XL', 1.99, 999);
+>
+> -- CHECK-Fehler: Preis darf nicht negativ sein
+> INSERT INTO produkt (name, preis_eur, lieferant_id)
+> VALUES ('Riegel Minus', -1.00, 1);
+> ```
 
 ### 8.4 Insert-Strategien in der Praxis
 Beim Befüllen mehrerer Tabellen hilft ein fester Ablauf:
