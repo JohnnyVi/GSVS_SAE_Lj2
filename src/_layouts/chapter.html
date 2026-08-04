@@ -59,3 +59,78 @@ layout: default
     </nav>
   </article>
 </div>
+
+<script type="module">
+  const mermaidSelector =
+    "pre > code.language-mermaid, .language-mermaid pre code, code[class*='language-mermaid']";
+
+  function getMermaidCodeBlocks() {
+    return document.querySelectorAll(mermaidSelector);
+  }
+
+  function convertMermaidCodeBlocks() {
+    const mermaidCodeBlocks = getMermaidCodeBlocks();
+
+    mermaidCodeBlocks.forEach((codeBlock) => {
+      const host = codeBlock.closest(".highlighter-rouge") || codeBlock.closest("pre");
+      if (!host) {
+        return;
+      }
+
+      const mermaidContainer = document.createElement("div");
+      mermaidContainer.className = "mermaid";
+      mermaidContainer.textContent = codeBlock.textContent || "";
+      host.replaceWith(mermaidContainer);
+    });
+  }
+
+  function showMermaidFallbackNotice() {
+    if (!getMermaidCodeBlocks().length) {
+      return;
+    }
+
+    if (document.querySelector("[data-mermaid-fallback='true']")) {
+      return;
+    }
+
+    const notice = document.createElement("p");
+    notice.setAttribute("data-mermaid-fallback", "true");
+    notice.setAttribute("role", "status");
+    notice.textContent = "Hinweis: Mermaid konnte nicht geladen werden. Das Diagramm wird als Codeblock angezeigt.";
+    notice.style.margin = "1rem 0";
+    notice.style.padding = "0.75rem";
+    notice.style.border = "1px solid #d0d7de";
+
+    const firstCodeBlock = getMermaidCodeBlocks()[0];
+    const firstHost = firstCodeBlock
+      ? firstCodeBlock.closest(".highlighter-rouge") || firstCodeBlock.closest("pre")
+      : null;
+
+    if (firstHost && firstHost.parentNode) {
+      firstHost.parentNode.insertBefore(notice, firstHost);
+    }
+  }
+
+  (async () => {
+    try {
+      const { default: mermaid } = await import(
+        "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs"
+      );
+
+      convertMermaidCodeBlocks();
+
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: "default",
+        securityLevel: "loose"
+      });
+
+      await mermaid.run({
+        querySelector: ".mermaid"
+      });
+    } catch (error) {
+      console.error("Mermaid could not be loaded.", error);
+      showMermaidFallbackNotice();
+    }
+  })();
+</script>

@@ -25,6 +25,22 @@ Beispiel (Warenautomat):
 - `standort` zu `automat` ist 1:n.
 - `automat` zu `mitarbeiter` ist m:n.
 
+```mermaid
+flowchart LR
+	STANDORT[standort] --- BEZ1{hat}
+	BEZ1 --- AUTOMAT[automat]
+	AUTOMAT --- BEZ2{zugeordnet}
+	BEZ2 --- MITARBEITER[mitarbeiter]
+
+	ST_PK((standort_id)) --- STANDORT
+	AU_PK((automat_id)) --- AUTOMAT
+	MI_PK((mitarbeiter_id)) --- MITARBEITER
+
+	BEZ1 --- K1[1:n]
+	BEZ2 --- K2[m:n]
+```
+
+
 Auflösung von m:n-Beziehungen:
 - Eine m:n-Beziehung wird im relationalen Modell immer über eine Zwischentabelle aufgelöst.
 - Im Chen-Kontext kann man sich das als "Rechteck um die Raute" merken: Die Beziehung wird zu einer eigenen Entität/Tabelle.
@@ -54,13 +70,60 @@ Tabellarische Darstellung (Beispiel aus dem Warenautomaten-Modell):
 | `produkt` | `produkt_id` | `lieferant_id` | Viele Produkte pro Lieferant (1:n) |
 | `inventar` | `inventar_id` | `automat_id`, `produkt_id` | Verknüpft Automat und Produkt mit Bestandsdaten |
 
+```mermaid
+erDiagram
+	STANDORT ||--|{ AUTOMAT : hat
+	AUTOMAT ||--o{ AUTOMAT_MITARBEITER : hat_zuordnung
+	MITARBEITER ||--o{ AUTOMAT_MITARBEITER : ist_zugeordnet
+	LIEFERANT ||--|{ PRODUKT : liefert
+	AUTOMAT ||--o{ INVENTAR : enthaelt
+	PRODUKT ||--o{ INVENTAR : ist_im_bestand
+
+	STANDORT {
+		BIGINT standort_id PK
+		VARCHAR bezeichnung
+	}
+
+	AUTOMAT {
+		BIGINT automat_id PK
+		BIGINT standort_id FK
+		VARCHAR seriennummer
+	}
+
+	MITARBEITER {
+		BIGINT mitarbeiter_id PK
+		VARCHAR vorname
+		VARCHAR nachname
+	}
+
+	AUTOMAT_MITARBEITER {
+		BIGINT automat_id PK, FK
+		BIGINT mitarbeiter_id PK, FK
+	}
+
+	LIEFERANT {
+		BIGINT lieferant_id PK
+		VARCHAR name
+	}
+
+	PRODUKT {
+		BIGINT produkt_id PK
+		BIGINT lieferant_id FK
+		VARCHAR name
+	}
+
+	INVENTAR {
+		BIGINT inventar_id PK
+		BIGINT automat_id FK
+		BIGINT produkt_id FK
+	}
+```
+
 So wird in Crow's Foot sehr schnell sichtbar:
 - Welche Tabelle inhaltlich unabhängig ist.
 - Welche Tabelle von anderen abhängt (wegen FK).
 - Wo eine ehemals m:n-Beziehung bereits technisch aufgelöst wurde.
 
-### 4.4 ER-Umsetzung in Tabellen
-Aus einem ER-Modell werden Entitäten zu Tabellen und Beziehungen zu Fremdschlüsseln oder Zwischentabellen. In der Warenautomat-Datenbank sind die Beziehungen `standort` zu `automat`, `lieferant` zu `produkt`, `automat` zu `mitarbeiter` und `automat` zu `produkt` besonders wichtig.
 
 ### Querverweise
 - [4.2 ER-Modell nach Chen](#42-er-modell-nach-chen)
