@@ -60,6 +60,22 @@ layout: default
   </article>
 </div>
 
+<style>
+  .chapter-content .mermaid {
+    margin: 1.25rem 0;
+    padding: 1rem;
+    background: #ffffff;
+    border: 1px solid #d0d7de;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+  }
+
+  .chapter-content .mermaid svg {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
 <script type="module">
   const mermaidSelector =
     "pre > code.language-mermaid, .language-mermaid pre code, code[class*='language-mermaid']";
@@ -121,7 +137,20 @@ layout: default
 
       mermaid.initialize({
         startOnLoad: false,
-        theme: "default",
+        theme: "base",
+        darkMode: false,
+        themeVariables: {
+          background: "#ffffff",
+          primaryColor: "#f6f8fa",
+          primaryTextColor: "#111827",
+          primaryBorderColor: "#1f2937",
+          lineColor: "#1f2937",
+          secondaryColor: "#eef2ff",
+          tertiaryColor: "#ecfeff",
+          noteBkgColor: "#fff7ed",
+          noteTextColor: "#111827",
+          edgeLabelBackground: "#ffffff"
+        },
         securityLevel: "loose"
       });
 
